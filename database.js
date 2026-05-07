@@ -92,6 +92,14 @@ CREATE TABLE IF NOT EXISTS posts (
   type TEXT,
   description TEXT
 );
+CREATE TABLE IF NOT EXISTS service_requests (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  sender_id INTEGER REFERENCES users(id),
+  receiver_id INTEGER REFERENCES users(id),
+  service_name TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 `);
 
 // === SEED DATA ===

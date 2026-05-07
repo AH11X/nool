@@ -6,7 +6,7 @@ const cors = require('cors');
 const db = require('./database');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
@@ -198,6 +198,33 @@ app.post('/api/messages', requireNotGuest, (req, res) => {
   res.json({ success: true });
 });
 
+// === SERVICE REQUESTS ===
+app.get('/api/requests', requireNotGuest, (req, res) => {
+  const requests = db.prepare(`
+    SELECT sr.*, u.name as sender_name, u.media_icon, u.bg
+    FROM service_requests sr
+    JOIN users u ON sr.sender_id = u.id
+    WHERE sr.receiver_id = ?
+    ORDER BY sr.created_at DESC
+  `).all(req.session.userId);
+  res.json(requests);
+});
+app.post('/api/requests', requireNotGuest, (req, res) => {
+  const { receiver_uid, service_name } = req.body;
+  const receiver = db.prepare('SELECT id FROM users WHERE uid = ?').get(receiver_uid);
+  if (!receiver) return res.status(400).json({ error: 'المستخدم غير موجود' });
+  db.prepare('INSERT INTO service_requests (sender_id,receiver_id,service_name) VALUES (?,?,?)')
+    .run(req.session.userId, receiver.id, service_name || 'طلب خدمة عامة');
+  res.json({ success: true });
+});
+app.post('/api/requests/:id/action', requireNotGuest, (req, res) => {
+  const { action } = req.body; // 'accepted' or 'rejected'
+  const reqId = req.params.id;
+  db.prepare('UPDATE service_requests SET status = ? WHERE id = ? AND receiver_id = ?')
+    .run(action, reqId, req.session.userId);
+  res.json({ success: true });
+});
+
 // === NOTIFICATIONS ===
 app.get('/api/notifications', requireAuth, (req, res) => {
   if (req.session.isGuest) return res.json([]);
@@ -235,6 +262,6 @@ app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🧶 نُول يعمل على http://localhost:${PORT}\n`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🧶 نُول يعمل على المنفذ ${PORT}\n`);
 });
