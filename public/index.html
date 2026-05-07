@@ -1,0 +1,4723 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>نُول – سوق المهارات الجامعي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2ed;
+      --bg2: #ede9e0;
+      --card: rgba(255, 255, 255, 0.78);
+      --card2: rgba(255, 255, 255, 0.97);
+      --border: rgba(255, 255, 255, 0.7);
+      --border2: rgba(0, 0, 0, 0.07);
+      --text: #0f0e0c;
+      --sub: #6b6560;
+      --sub2: #938d86;
+      --nav: rgba(245, 242, 237, 0.94);
+      --input: rgba(255, 255, 255, 0.55);
+      --accent: #c84b11;
+      --accent2: #f0a500;
+      --accentG: linear-gradient(135deg, #c84b11, #f0a500);
+      --accentGR: linear-gradient(135deg, #f0a500, #c84b11);
+      --gold: #f0a500;
+      --green: #0d9488;
+      --red: #dc2626;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --r: 16px;
+      --r2: 22px;
+      --r3: 32px;
+      --blur: blur(32px) saturate(240%);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      --shadow2: 0 16px 56px rgba(0, 0, 0, 0.12);
+      --glow: 0 0 50px rgba(200, 75, 17, 0.14);
+      --glow2: 0 0 90px rgba(200, 75, 17, 0.2);
+      --spring: cubic-bezier(.34, 1.56, .64, 1);
+      --ease: cubic-bezier(.22, .68, 0, 1.2);
+    }
+
+    :root.dark {
+      --bg: #0c0b09;
+      --bg2: #141210;
+      --card: rgba(22, 20, 16, 0.75);
+      --card2: rgba(30, 28, 22, 0.97);
+      --border: rgba(255, 255, 255, 0.06);
+      --border2: rgba(255, 255, 255, 0.1);
+      --text: #f0ece4;
+      --sub: #9a9088;
+      --sub2: #c4bdb4;
+      --nav: rgba(12, 11, 9, 0.94);
+      --input: rgba(0, 0, 0, 0.32);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+      --shadow2: 0 16px 56px rgba(0, 0, 0, 0.7);
+      --glow: 0 0 60px rgba(200, 75, 17, 0.3);
+      --glow2: 0 0 110px rgba(200, 75, 17, 0.38);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    svg use {
+      fill: none;
+      stroke: inherit;
+      stroke-width: inherit;
+      stroke-linecap: inherit;
+      stroke-linejoin: inherit
+    }
+
+    svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Tajawal', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background .5s, color .5s;
+      position: relative;
+    }
+
+    /* BG LAYERS */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 85% 5%, rgba(200, 75, 17, .08) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 15% 85%, rgba(240, 165, 0, .06) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgPulse 14s ease-in-out infinite alternate;
+    }
+
+    :root.dark body::before {
+      background:
+        radial-gradient(ellipse 70% 50% at 85% 5%, rgba(200, 75, 17, .2) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 15% 85%, rgba(240, 165, 0, .12) 0%, transparent 55%);
+    }
+
+    @keyframes bgPulse {
+      from {
+        opacity: .8
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* GRAIN */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: .35;
+      animation: grain 8s steps(10) infinite;
+    }
+
+    :root.dark body::after {
+      opacity: .2
+    }
+
+    @keyframes grain {
+      0% {
+        transform: translate(0, 0)
+      }
+
+      10% {
+        transform: translate(-2%, -3%)
+      }
+
+      20% {
+        transform: translate(3%, 2%)
+      }
+
+      30% {
+        transform: translate(-1%, 4%)
+      }
+
+      40% {
+        transform: translate(4%, -1%)
+      }
+
+      50% {
+        transform: translate(-3%, 3%)
+      }
+
+      60% {
+        transform: translate(2%, -4%)
+      }
+
+      70% {
+        transform: translate(-4%, 2%)
+      }
+
+      80% {
+        transform: translate(3%, -2%)
+      }
+
+      90% {
+        transform: translate(-2%, 4%)
+      }
+
+      100% {
+        transform: translate(0, 0)
+      }
+    }
+
+    /* ORBS */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: .4;
+      animation: orbFloat 20s ease-in-out infinite
+    }
+
+    .orb1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(200, 75, 17, .3), transparent 70%);
+      top: -80px;
+      right: -60px;
+      animation-delay: 0s
+    }
+
+    .orb2 {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(240, 165, 0, .22), transparent 70%);
+      bottom: 80px;
+      left: -60px;
+      animation-delay: -7s
+    }
+
+    .orb3 {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(200, 75, 17, .18), transparent 70%);
+      top: 45%;
+      right: 18%;
+      animation-delay: -14s
+    }
+
+    :root.dark .orb {
+      opacity: .55
+    }
+
+    @keyframes orbFloat {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      25% {
+        transform: translate(25px, -18px) scale(1.06)
+      }
+
+      50% {
+        transform: translate(-12px, 25px) scale(.95)
+      }
+
+      75% {
+        transform: translate(18px, 12px) scale(1.03)
+      }
+    }
+
+    /* VIEWS */
+    .view {
+      display: none;
+      min-height: 100vh;
+      padding-bottom: 120px;
+      position: relative;
+      z-index: 2
+    }
+
+    .view.active {
+      display: block;
+      animation: viewIn .4s var(--ease) both
+    }
+
+    #login-view.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 0;
+      min-height: 100svh
+    }
+
+    @keyframes viewIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    /* STAGGER */
+    .stagger>* {
+      opacity: 0;
+      animation: staggerIn .5s var(--ease) both
+    }
+
+    .stagger>*:nth-child(1) {
+      animation-delay: .04s
+    }
+
+    .stagger>*:nth-child(2) {
+      animation-delay: .09s
+    }
+
+    .stagger>*:nth-child(3) {
+      animation-delay: .14s
+    }
+
+    .stagger>*:nth-child(4) {
+      animation-delay: .20s
+    }
+
+    .stagger>*:nth-child(5) {
+      animation-delay: .26s
+    }
+
+    .stagger>*:nth-child(6) {
+      animation-delay: .32s
+    }
+
+    .stagger>*:nth-child(7) {
+      animation-delay: .38s
+    }
+
+    .stagger>*:nth-child(8) {
+      animation-delay: .44s
+    }
+
+    .stagger>*:nth-child(9) {
+      animation-delay: .50s
+    }
+
+    .stagger>*:nth-child(10) {
+      animation-delay: .56s
+    }
+
+    @keyframes staggerIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(.95)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    /* HEADER */
+    .hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: var(--nav);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 0 var(--border2), var(--shadow);
+      transition: background .4s, box-shadow .4s;
+    }
+
+    .hdr::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 75, 17, .25), transparent);
+    }
+
+    /* LOGO */
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      background: var(--accentG);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      cursor: pointer;
+      filter: drop-shadow(0 0 0px rgba(200, 75, 17, 0));
+      transition: filter .4s;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 10px rgba(200, 75, 17, .35))
+    }
+
+    .hdr-icon {
+      font-size: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--input);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all .28s var(--spring);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hdr-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      position: relative;
+      z-index: 1;
+      transition: transform .28s var(--spring), stroke .25s
+    }
+
+    .hdr-icon:active {
+      transform: scale(.84)
+    }
+
+    .hdr-icon:hover {
+      transform: scale(1.1) rotate(-4deg);
+      background: var(--card2);
+      box-shadow: var(--shadow), 0 0 18px rgba(200, 75, 17, .12)
+    }
+
+    .hdr-icon:hover svg {
+      stroke: var(--accent);
+      transform: scale(1.1)
+    }
+
+    .hdr-row {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .hdr-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--text);
+      animation: fadeSlideDown .4s var(--ease) both
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .notif-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 5px;
+      border-radius: 10px;
+      border: 2px solid var(--bg);
+      animation: pulseBadge 2s ease infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseBadge {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, .5)
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(220, 38, 38, 0)
+      }
+    }
+
+    /* INPUTS */
+    .inp {
+      width: 100%;
+      padding: 14px 18px;
+      margin: 6px 0;
+      border-radius: var(--r);
+      background: var(--input);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-size: 15px;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      transition: all .3s var(--spring);
+    }
+
+    .inp:focus {
+      border-color: var(--accent);
+      background: var(--card2);
+      box-shadow: 0 0 0 4px rgba(200, 75, 17, .1), var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    select.inp option {
+      background: var(--bg2);
+      color: var(--text)
+    }
+
+    textarea.inp {
+      height: 110px;
+      resize: none
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: var(--r);
+      border: none;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      transition: all .28s var(--spring);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+      transform: skewX(-15deg);
+    }
+
+    .btn:hover::before {
+      animation: btnShimmer .6s ease forwards
+    }
+
+    @keyframes btnShimmer {
+      from {
+        left: -100%
+      }
+
+      to {
+        left: 150%
+      }
+    }
+
+    .btn:active {
+      transform: translateY(2px) scale(.97);
+      opacity: .85
+    }
+
+    .btn-p {
+      background: var(--accentG);
+      color: #fff;
+      box-shadow: 0 6px 22px rgba(200, 75, 17, .32), inset 0 1px 0 rgba(255, 255, 255, .2);
+    }
+
+    .btn-p:hover {
+      box-shadow: 0 10px 32px rgba(200, 75, 17, .46);
+      transform: translateY(-2px)
+    }
+
+    .btn-o {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border2);
+      color: var(--text)
+    }
+
+    .btn-o:hover {
+      background: var(--card2);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px)
+    }
+
+    .btn-sm {
+      padding: 9px 16px;
+      font-size: 13px;
+      border-radius: 11px;
+      width: auto
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(220, 38, 38, .3)
+    }
+
+    /* RIPPLE */
+    .ripple-host {
+      position: relative;
+      overflow: hidden
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .32);
+      transform: scale(0);
+      animation: rippleAnim .6s linear;
+      pointer-events: none
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0
+      }
+    }
+
+    /* ================== LOGIN — REDESIGNED ================== */
+    .login-wrap {
+      width: 92%;
+      max-width: 440px;
+      margin: auto;
+      padding: 20px 0
+    }
+
+    .login-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 0;
+      backdrop-filter: var(--blur);
+      box-shadow: var(--shadow2), var(--glow2);
+      position: relative;
+      overflow: hidden;
+      animation: loginCardIn .7s var(--ease) both;
+    }
+
+    @keyframes loginCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(.93)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    /* Login top hero band */
+    .login-hero {
+      background: var(--accentG);
+      padding: 40px 30px 50px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .login-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 65%);
+      pointer-events: none;
+      animation: heroGlow 5s ease-in-out infinite alternate;
+    }
+
+    .login-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255, 255, 255, .1), transparent 65%);
+      pointer-events: none;
+      animation: heroGlow 5s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes heroGlow {
+      from {
+        transform: scale(.85);
+        opacity: .6
+      }
+
+      to {
+        transform: scale(1.15);
+        opacity: 1
+      }
+    }
+
+    /* Diagonal cut at bottom of hero */
+    .login-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: var(--card2);
+      clip-path: ellipse(55% 100% at 50% 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .login-logo-wrap {
+      position: relative;
+      z-index: 3
+    }
+
+    .login-logo {
+      font-size: 76px;
+      font-weight: 900;
+      letter-spacing: -5px;
+      color: #fff;
+      text-shadow: 0 4px 32px rgba(0, 0, 0, .2);
+      margin-bottom: 6px;
+      animation: logoFloat 4s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes logoFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg)
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1.5deg)
+      }
+    }
+
+    .login-tagline {
+      color: rgba(255, 255, 255, .9);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
+      position: relative;
+      z-index: 3;
+      animation: fadeUp .7s .3s var(--ease) both;
+    }
+
+    /* Login body */
+    .login-body {
+      padding: 30px 28px 36px;
+      position: relative
+    }
+
+    /* floating label tabs */
+    .login-tabs {
+      display: flex;
+      background: var(--input);
+      border: 1.5px solid var(--border2);
+      border-radius: var(--r);
+      margin-bottom: 22px;
+      overflow: hidden;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .login-tab {
+      flex: 1;
+      padding: 11px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--sub2);
+      transition: all .35s var(--spring);
+      border-radius: 10px;
+      font-family: 'Tajawal', sans-serif;
+      border: none;
+      background: transparent;
+    }
+
+    .login-tab.active {
+      background: var(--accentG);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(200, 75, 17, .32);
+      transform: scale(1.03);
+    }
+
+    .login-tab:not(.active):hover {
+      background: rgba(200, 75, 17, .06);
+      color: var(--text)
+    }
+
+    .login-form-label {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--sub2);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+      margin-top: 14px;
+    }
+
+    .login-form-label:first-of-type {
+      margin-top: 0
+    }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border2)
+    }
+
+    .login-divider span {
+      font-size: 11px;
+      color: var(--sub2);
+      font-weight: 700
+    }
+
+    .login-footer {
+      font-size: 11px;
+      color: var(--sub2);
+      text-align: center;
+      margin-top: 18px;
+      line-height: 1.6
+    }
+
+    .login-footer a {
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline
+    }
+
+    /* Animated login button */
+    .login-btn-wrap {
+      position: relative;
+      margin-top: 20px
+    }
+
+    .login-btn-wrap .btn-p {
+      font-size: 16px;
+      padding: 16px;
+      border-radius: var(--r);
+      box-shadow: 0 8px 28px rgba(200, 75, 17, .38);
+      letter-spacing: .3px;
+    }
+
+    .login-btn-wrap .btn-p:hover {
+      box-shadow: 0 14px 38px rgba(200, 75, 17, .52);
+      transform: translateY(-3px);
+    }
+
+    /* Security badges row */
+    .login-trust {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sub2);
+    }
+
+    .trust-item svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round
+    }
+
+    /* PILL TABS */
+    .top-tabs-container {
+      display: flex;
+      justify-content: center;
+      padding: 16px 20px 6px;
+      animation: fadeUp .5s .1s var(--ease) both
+    }
+
+    .top-tabs {
+      display: flex;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 4px;
+      box-shadow: var(--shadow);
+      gap: 2px
+    }
+
+    .top-tab {
+      padding: 9px 22px;
+      font-weight: 900;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--sub2);
+      transition: all .35s var(--spring);
+      border-radius: 26px;
+      font-family: 'Tajawal', sans-serif;
+      border: none;
+      background: transparent
+    }
+
+    .top-tab.active {
+      background: var(--accentG);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(200, 75, 17, .3);
+      transform: scale(1.05)
+    }
+
+    /* CATS */
+    .cats {
+      display: flex;
+      gap: 9px;
+      padding: 14px 20px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      scrollbar-width: none
+    }
+
+    .cats::-webkit-scrollbar {
+      display: none
+    }
+
+    .cat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 17px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--border2);
+      color: var(--sub);
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      transition: all .3s var(--spring);
+      flex-shrink: 0;
+      font-family: 'Tajawal', sans-serif
+    }
+
+    .cat svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform .35s var(--spring);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .cat:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: var(--shadow)
+    }
+
+    .cat:hover svg {
+      transform: scale(1.2) rotate(-10deg)
+    }
+
+    .cat.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+      transform: translateY(-1px)
+    }
+
+    .cat.active svg {
+      stroke: var(--bg)
+    }
+
+    .cat:active {
+      transform: scale(.94)
+    }
+
+    /* SORT BAR */
+    .sort-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px 0
+    }
+
+    .sort-bar select {
+      width: auto;
+      padding: 7px 12px;
+      border-radius: 11px;
+      font-size: 13px;
+      margin: 0;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      outline: none;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      transition: all .25s
+    }
+
+    .sort-bar select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200, 75, 17, .08)
+    }
+
+    /* FEED */
+    .feed {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px
+    }
+
+    /* POST CARD */
+    .post {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 22px;
+      transition: all .38s var(--spring);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      cursor: default
+    }
+
+    .post::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accentG);
+      opacity: 0;
+      transition: .35s;
+      border-radius: var(--r3) var(--r3) 0 0
+    }
+
+    .post:hover {
+      transform: translateY(-5px) scale(1.006);
+      box-shadow: var(--shadow2), var(--glow)
+    }
+
+    .post:hover::before {
+      opacity: 1
+    }
+
+    .post:active {
+      transform: scale(.985)
+    }
+
+    .ph {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 16px
+    }
+
+    .av {
+      border-radius: 16px;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all .32s var(--spring);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+      font-size: 18px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .av::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .25) 0%, transparent 55%);
+      pointer-events: none
+    }
+
+    .av:hover {
+      transform: scale(1.12) rotate(-6deg);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .25), var(--glow)
+    }
+
+    .av:active {
+      transform: scale(.9)
+    }
+
+    .av-svg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .av-svg svg {
+      width: 55%;
+      height: 55%;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .ph-info {
+      flex: 1;
+      cursor: pointer
+    }
+
+    .ph-info h3 {
+      font-size: 15px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    .ph-info p {
+      font-size: 12px;
+      color: var(--sub2);
+      margin-top: 3px;
+      font-weight: 500
+    }
+
+    .ph-info:hover h3 {
+      color: var(--accent)
+    }
+
+    /* POST MEDIA */
+    .post-media {
+      width: 100%;
+      aspect-ratio: 21/9;
+      border-radius: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .12);
+      transition: transform .38s var(--spring)
+    }
+
+    .post:hover .post-media {
+      transform: scale(1.015)
+    }
+
+    .post-media-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .post-media-inner svg {
+      width: 76px;
+      height: 76px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 4px 20px rgba(0, 0, 0, .4));
+      animation: floatIcon 3.5s ease-in-out infinite
+    }
+
+    @keyframes floatIcon {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1) rotate(-2deg)
+      }
+
+      33% {
+        transform: translateY(-10px) scale(1.05) rotate(2deg)
+      }
+
+      66% {
+        transform: translateY(-5px) scale(1.02) rotate(-1deg)
+      }
+    }
+
+    .post-media-shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .18) 0%, transparent 50%, rgba(255, 255, 255, .06) 100%);
+      pointer-events: none
+    }
+
+    .post-media-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .13) 50%, transparent 60%);
+      animation: shimmerMove 3s ease-in-out infinite;
+      pointer-events: none
+    }
+
+    @keyframes shimmerMove {
+      0% {
+        transform: translateX(-100%)
+      }
+
+      100% {
+        transform: translateX(200%)
+      }
+    }
+
+    .cm {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none
+    }
+
+    .pill {
+      background: rgba(0, 0, 0, .5);
+      backdrop-filter: blur(14px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 6px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid rgba(255, 255, 255, .18)
+    }
+
+    .pill svg {
+      width: 11px;
+      height: 11px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round
+    }
+
+    .post-body p {
+      font-size: 14px;
+      line-height: 1.85;
+      font-weight: 500
+    }
+
+    .tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 12px
+    }
+
+    .tag {
+      background: var(--input);
+      border: 1px solid var(--border2);
+      color: var(--sub);
+      padding: 5px 11px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      transition: all .25s var(--spring);
+      cursor: default
+    }
+
+    .tag:hover {
+      background: var(--card2);
+      color: var(--text);
+      transform: translateY(-2px)
+    }
+
+    .post-acts {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px
+    }
+
+    .pa {
+      flex: 1;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      text-align: center;
+      transition: all .28s var(--spring);
+      border: none;
+      font-family: 'Tajawal', sans-serif;
+      position: relative;
+      overflow: hidden
+    }
+
+    .pa:active {
+      transform: scale(.94)
+    }
+
+    /* SEARCH */
+    .sbox {
+      margin: 14px 18px;
+      position: relative
+    }
+
+    .sbox input {
+      width: 100%;
+      padding: 14px 52px 14px 18px;
+      border-radius: var(--r2);
+      background: var(--input);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: all .3s var(--spring);
+      font-family: 'Tajawal', sans-serif
+    }
+
+    .sbox input:focus {
+      border-color: var(--accent);
+      background: var(--card);
+      box-shadow: 0 0 0 4px rgba(200, 75, 17, .08), var(--shadow);
+      transform: translateY(-1px)
+    }
+
+    .sico {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none
+    }
+
+    .sico svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      transition: .3s
+    }
+
+    .sbox input:focus~.sico svg {
+      stroke: var(--accent)
+    }
+
+    /* SKILL LIST */
+    .sec-t {
+      padding: 12px 20px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--sub2);
+      letter-spacing: 1.2px;
+      text-transform: uppercase
+    }
+
+    .skill-list {
+      padding: 0 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 17px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      cursor: pointer;
+      transition: all .32s var(--spring);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .skill-item:hover {
+      transform: translateX(-5px);
+      box-shadow: var(--shadow2), var(--glow)
+    }
+
+    .skill-item:active {
+      transform: scale(.97)
+    }
+
+    .skill-l {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .skill-arrow svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transition: all .28s var(--spring)
+    }
+
+    .skill-item:hover .skill-arrow svg {
+      transform: translateX(-5px);
+      stroke: var(--accent)
+    }
+
+    .cat-av {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+      transition: transform .35s var(--spring)
+    }
+
+    .cat-av svg {
+      width: 26px;
+      height: 26px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .skill-item:hover .cat-av {
+      transform: scale(1.1) rotate(-6deg)
+    }
+
+    /* OFFER CARDS */
+    .offer-item {
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow);
+      transition: all .3s var(--spring);
+      gap: 13px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .offer-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow2)
+    }
+
+    .price-badge {
+      background: rgba(13, 148, 136, .1);
+      color: var(--green);
+      border: 1px solid rgba(13, 148, 136, .18);
+      padding: 5px 11px;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: all .25s var(--spring)
+    }
+
+    .offer-item:hover .price-badge {
+      background: rgba(13, 148, 136, .16)
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .52);
+      z-index: 200;
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+      backdrop-filter: blur(12px)
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeInOverlay .25s ease
+    }
+
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .modal-content {
+      background: var(--bg);
+      width: 100%;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      padding: 28px 24px;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, .16);
+      animation: slideUpModal .38s var(--spring) both;
+      position: relative;
+      max-height: 88vh;
+      overflow-y: auto
+    }
+
+    @keyframes slideUpModal {
+      from {
+        transform: translateY(100%)
+      }
+
+      to {
+        transform: translateY(0)
+      }
+    }
+
+    .modal-handle {
+      width: 40px;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--border2);
+      margin: 0 auto 22px
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 8px
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 26px;
+      left: 24px;
+      background: var(--input);
+      border: 1px solid var(--border2);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-weight: 900;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .28s var(--spring);
+      font-size: 12px
+    }
+
+    .modal-close:hover {
+      background: var(--card2);
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: var(--shadow)
+    }
+
+    /* WALLET */
+    .wallet-card {
+      border-radius: var(--r3);
+      padding: 38px 26px;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 16px 44px rgba(200, 75, 17, .35), var(--glow2);
+      position: relative;
+      overflow: hidden;
+      background: var(--accentG)
+    }
+
+    .wallet-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -40%;
+      width: 90%;
+      height: 90%;
+      background: radial-gradient(circle, rgba(255, 255, 255, .16), transparent 60%);
+      pointer-events: none
+    }
+
+    .wallet-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(255, 255, 255, .04) 22px, rgba(255, 255, 255, .04) 44px);
+      pointer-events: none
+    }
+
+    /* ADD SCREEN */
+    .add-wrap {
+      padding: 24px 18px
+    }
+
+    .type-grid {
+      display: flex;
+      gap: 13px;
+      margin-bottom: 22px
+    }
+
+    .type-card {
+      flex: 1;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 22px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .35s var(--spring);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      box-shadow: var(--shadow)
+    }
+
+    .type-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow2)
+    }
+
+    .type-card.active {
+      border-color: var(--accent);
+      background: rgba(200, 75, 17, .06);
+      box-shadow: 0 0 0 4px rgba(200, 75, 17, .12), var(--shadow2)
+    }
+
+    .type-icon {
+      width: 42px;
+      height: 42px;
+      transition: transform .38s var(--spring)
+    }
+
+    .type-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .type-card:hover .type-icon {
+      transform: scale(1.2) rotate(10deg)
+    }
+
+    .type-t {
+      font-size: 14px;
+      font-weight: 900
+    }
+
+    .add-lbl {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--sub2);
+      margin-bottom: 7px;
+      display: block;
+      margin-top: 18px;
+      text-transform: uppercase;
+      letter-spacing: .6px
+    }
+
+    /* DM */
+    .dm-list {
+      display: flex;
+      flex-direction: column;
+      padding: 0 8px
+    }
+
+    .dm-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 13px;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all .28s var(--spring);
+      gap: 14px;
+      margin-bottom: 4px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .dm-item:hover {
+      background: var(--card)
+    }
+
+    .dm-item:active {
+      transform: scale(.97)
+    }
+
+    .dm-info {
+      flex: 1;
+      min-width: 0
+    }
+
+    .dm-name {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 4px;
+      transition: color .2s
+    }
+
+    .dm-item:hover .dm-name {
+      color: var(--accent)
+    }
+
+    .dm-msg {
+      font-size: 13px;
+      color: var(--sub2);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500
+    }
+
+    .dm-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0
+    }
+
+    .dm-time {
+      font-size: 11px;
+      color: var(--sub);
+      font-weight: 700
+    }
+
+    .unread {
+      background: var(--accentG);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 20px;
+      min-width: 22px;
+      text-align: center;
+      animation: pulseBadge 2s ease infinite
+    }
+
+    /* CHAT */
+    .chat-area {
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: calc(100vh - 155px);
+      overflow-y: auto
+    }
+
+    .msg-row {
+      display: flex;
+      flex-direction: column;
+      max-width: 84%;
+      animation: msgIn .36s var(--spring) both
+    }
+
+    .msg-row.in {
+      align-self: flex-start
+    }
+
+    .msg-row.out {
+      align-self: flex-end
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(.88)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    .msg {
+      padding: 14px 18px;
+      font-size: 15px;
+      line-height: 1.7;
+      border-radius: 22px;
+      font-weight: 500
+    }
+
+    .msg-row.in .msg {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-top-right-radius: 6px;
+      box-shadow: var(--shadow)
+    }
+
+    .msg-row.out .msg {
+      background: var(--accentG);
+      color: #fff;
+      border-top-left-radius: 6px;
+      box-shadow: 0 6px 22px rgba(200, 75, 17, .32)
+    }
+
+    .msg-time {
+      font-size: 11px;
+      color: var(--sub);
+      margin-top: 5px;
+      font-weight: 700
+    }
+
+    .chat-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: var(--nav);
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 11px;
+      z-index: 100;
+      align-items: center;
+      backdrop-filter: var(--blur)
+    }
+
+    .chat-inp {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: 26px;
+      background: var(--input);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      outline: none;
+      font-size: 15px;
+      transition: all .3s var(--spring);
+      font-family: 'Tajawal', sans-serif
+    }
+
+    .chat-inp:focus {
+      border-color: var(--accent);
+      background: var(--card);
+      box-shadow: 0 0 0 4px rgba(200, 75, 17, .08);
+      transform: translateY(-1px)
+    }
+
+    .chat-send {
+      background: var(--accentG);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(200, 75, 17, .42);
+      transition: all .28s var(--spring)
+    }
+
+    .chat-send svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      transition: transform .25s var(--spring)
+    }
+
+    .chat-send:active {
+      transform: scale(.84)
+    }
+
+    .chat-send:hover {
+      transform: scale(1.1) rotate(-8deg);
+      box-shadow: 0 10px 24px rgba(200, 75, 17, .52)
+    }
+
+    .typing-ind {
+      display: none;
+      gap: 5px;
+      padding: 13px 17px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      border-top-right-radius: 6px;
+      align-self: flex-start;
+      width: fit-content;
+      backdrop-filter: var(--blur)
+    }
+
+    .td {
+      width: 9px;
+      height: 9px;
+      background: var(--sub2);
+      border-radius: 50%;
+      animation: typing 1.4s infinite ease-in-out both
+    }
+
+    .td:nth-child(1) {
+      animation-delay: -.32s
+    }
+
+    .td:nth-child(2) {
+      animation-delay: -.16s
+    }
+
+    @keyframes typing {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0)
+      }
+
+      40% {
+        transform: scale(1)
+      }
+    }
+
+    /* PROFILE */
+    .prof-hdr {
+      position: relative;
+      margin-bottom: 68px
+    }
+
+    .prof-cover {
+      height: 160px;
+      width: 100%;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .prof-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 255, 255, .05) 20px, rgba(255, 255, 255, .05) 40px)
+    }
+
+    .prof-cover-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .2) 0%, transparent 45%, rgba(0, 0, 0, .07) 100%)
+    }
+
+    .prof-av-wrap {
+      position: absolute;
+      bottom: -54px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 108px;
+      height: 108px;
+      border-radius: 30px;
+      background: var(--bg2);
+      border: 5px solid var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      font-weight: 900;
+      color: #fff;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .2);
+      z-index: 10;
+      transition: transform .38s var(--spring)
+    }
+
+    .prof-av-wrap:hover {
+      transform: translateX(-50%) scale(1.08) rotate(-6deg)
+    }
+
+    .prof-av-wrap .av-svg svg {
+      width: 50%;
+      height: 50%
+    }
+
+    .prof-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 22px;
+      text-align: center
+    }
+
+    .prof-name {
+      font-size: 23px;
+      font-weight: 900;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .prof-title-badge {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: rgba(200, 75, 17, .09);
+      color: var(--accent);
+      padding: 7px 18px;
+      border-radius: 13px;
+      border: 1px solid rgba(200, 75, 17, .18);
+      display: inline-block;
+      transition: all .28s var(--spring)
+    }
+
+    .prof-title-badge:hover {
+      background: rgba(200, 75, 17, .16);
+      transform: scale(1.03)
+    }
+
+    .prof-bio {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.85;
+      max-width: 96%;
+      margin-bottom: 24px;
+      font-weight: 500
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 26px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      overflow: hidden;
+      box-shadow: var(--shadow)
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding: 18px 8px;
+      border-left: 1px solid var(--border);
+      transition: background .25s;
+      cursor: default
+    }
+
+    .stat:hover {
+      background: rgba(200, 75, 17, .03)
+    }
+
+    .stat:first-child {
+      border-left: none
+    }
+
+    .sv {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 4px;
+      background: var(--accentG);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: transform .28s var(--spring)
+    }
+
+    .stat:hover .sv {
+      transform: scale(1.1)
+    }
+
+    .sl {
+      font-size: 11px;
+      color: var(--sub2);
+      font-weight: 700;
+      letter-spacing: .4px
+    }
+
+    .ptabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      padding: 0 18px;
+      margin-bottom: 16px
+    }
+
+    .ptab {
+      flex: 1;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--sub2);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .28s var(--spring);
+      font-family: 'Tajawal', sans-serif;
+      background: transparent;
+      border-left: none;
+      border-right: none;
+      border-top: none
+    }
+
+    .ptab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent)
+    }
+
+    .ptab:hover:not(.active) {
+      color: var(--text)
+    }
+
+    .svc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 0 18px 26px
+    }
+
+    .svc-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 22px;
+      transition: all .3s var(--spring);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .svc-card:hover {
+      transform: translateX(-4px);
+      box-shadow: var(--shadow2), var(--glow)
+    }
+
+    .svc-card:active {
+      transform: scale(.97)
+    }
+
+    .svc-icon {
+      background: var(--input);
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 1px solid var(--border2);
+      flex-shrink: 0;
+      transition: transform .35s var(--spring), box-shadow .3s
+    }
+
+    .svc-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .svc-card:hover .svc-icon {
+      transform: scale(1.1) rotate(-7deg);
+      box-shadow: 0 6px 18px rgba(200, 75, 17, .18)
+    }
+
+    .svc-det {
+      flex: 1;
+      text-align: right
+    }
+
+    .svc-t {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 5px
+    }
+
+    .stud-b {
+      color: var(--green);
+      background: rgba(13, 148, 136, .09);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      display: inline-block;
+      border: 1px solid rgba(13, 148, 136, .18);
+      transition: all .25s
+    }
+
+    .svc-card:hover .stud-b {
+      background: rgba(13, 148, 136, .16)
+    }
+
+    .rev-card {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 20px;
+      margin-bottom: 11px;
+      text-align: right;
+      box-shadow: var(--shadow);
+      transition: all .28s var(--spring);
+      position: relative;
+      overflow: hidden
+    }
+
+    .rev-card::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accentG);
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .rev-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow2)
+    }
+
+    .rev-card:hover::before {
+      opacity: 1
+    }
+
+    /* BADGES */
+    .badge {
+      font-size: 10px;
+      font-weight: 900;
+      padding: 3px 9px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      letter-spacing: .2px
+    }
+
+    .badge-diamond {
+      background: linear-gradient(135deg, #06b6d4, #7c3aed);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(124, 58, 237, .3)
+    }
+
+    .badge-gold {
+      background: rgba(240, 165, 0, .13);
+      color: var(--gold);
+      border: 1px solid rgba(240, 165, 0, .3)
+    }
+
+    .badge-silver {
+      background: rgba(148, 163, 184, .13);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, .28)
+    }
+
+    /* BOTTOM NAV */
+    .bnav {
+      position: fixed;
+      bottom: 18px;
+      left: 5%;
+      width: 90%;
+      background: var(--nav);
+      backdrop-filter: var(--blur);
+      display: none;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow2), 0 0 0 1px var(--border), var(--glow);
+      z-index: 100;
+      animation: navIn .6s .2s var(--ease) both
+    }
+
+    @keyframes navIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .nb {
+      color: var(--sub2);
+      cursor: pointer;
+      padding: 11px 17px;
+      transition: all .3s var(--spring);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      position: relative;
+      background: transparent;
+      border: none
+    }
+
+    .nb svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all .3s var(--spring)
+    }
+
+    .nb:hover {
+      transform: translateY(-3px)
+    }
+
+    .nb:hover svg {
+      stroke: var(--text);
+      transform: scale(1.1)
+    }
+
+    .nb.active {
+      background: var(--card2);
+      box-shadow: var(--shadow)
+    }
+
+    .nb.active svg {
+      stroke: var(--text)
+    }
+
+    .nb:active {
+      transform: scale(.88)
+    }
+
+    .nb-add {
+      background: var(--accentG);
+      box-shadow: 0 8px 26px rgba(200, 75, 17, .45), 0 0 0 3px rgba(200, 75, 17, .16);
+      border-radius: 20px;
+      padding: 11px 22px;
+      animation: pulseAdd 3s ease infinite
+    }
+
+    .nb-add svg {
+      stroke: #fff !important
+    }
+
+    .nb-add:hover svg {
+      transform: scale(1.18) rotate(90deg) !important
+    }
+
+    @keyframes pulseAdd {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 26px rgba(200, 75, 17, .45), 0 0 0 3px rgba(200, 75, 17, .16)
+      }
+
+      50% {
+        box-shadow: 0 12px 36px rgba(200, 75, 17, .6), 0 0 0 6px rgba(200, 75, 17, .08)
+      }
+    }
+
+    /* COMP HERO */
+    .comp-hero {
+      margin: 22px 18px;
+      background: var(--accentG);
+      border-radius: var(--r3);
+      padding: 30px 26px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 14px 44px rgba(200, 75, 17, .32), var(--glow2)
+    }
+
+    .comp-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(-50deg, transparent, transparent 18px, rgba(255, 255, 255, .04) 18px, rgba(255, 255, 255, .04) 36px);
+      pointer-events: none
+    }
+
+    .comp-hero-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .15
+    }
+
+    .comp-hero-icon svg {
+      width: 96px;
+      height: 96px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: floatIcon 4s ease-in-out infinite
+    }
+
+    .comp-stat-pill {
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 12px;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 900;
+      transition: all .35s var(--spring)
+    }
+
+    .comp-stat-pill:hover {
+      background: rgba(255, 255, 255, .26);
+      transform: translateY(-2px) scale(1.04)
+    }
+
+    /* PROJ CARD */
+    .proj-card {
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow);
+      transition: all .35s var(--spring);
+      gap: 13px;
+      margin-bottom: 15px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accentG);
+      border-radius: 0 var(--r2) var(--r2) 0
+    }
+
+    .proj-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow2), var(--glow)
+    }
+
+    .proj-badge {
+      background: var(--input);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      padding: 5px 11px;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all .25s var(--spring)
+    }
+
+    .proj-badge svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round
+    }
+
+    .proj-badge:hover {
+      transform: scale(1.05);
+      background: var(--card2)
+    }
+
+    /* SETTINGS */
+    .set-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all .28s var(--spring);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .set-row:hover {
+      transform: translateX(-4px);
+      box-shadow: var(--shadow2)
+    }
+
+    .set-row:active {
+      transform: scale(.98)
+    }
+
+    .set-left {
+      display: flex;
+      align-items: center;
+      gap: 11px
+    }
+
+    .set-left svg {
+      width: 19px;
+      height: 19px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform .28s var(--spring)
+    }
+
+    .set-row:hover .set-left svg {
+      transform: scale(1.15) rotate(-4deg)
+    }
+
+    .set-label {
+      font-size: 15px;
+      font-weight: 700;
+      transition: color .25s
+    }
+
+    .set-row:hover .set-label {
+      color: var(--accent)
+    }
+
+    .set-val {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--accent)
+    }
+
+    .lb-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      margin-bottom: 11px;
+      cursor: pointer;
+      transition: all .3s var(--spring);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden
+    }
+
+    .lb-item:hover {
+      transform: translateX(-5px);
+      box-shadow: var(--shadow2)
+    }
+
+    .lb-item:nth-child(1) {
+      border-right: 4px solid #f59e0b
+    }
+
+    .lb-item:nth-child(2) {
+      border-right: 4px solid #94a3b8
+    }
+
+    .lb-item:nth-child(3) {
+      border-right: 4px solid #b45309
+    }
+
+    .lb-rank {
+      font-size: 22px;
+      font-weight: 900;
+      width: 34px;
+      text-align: center;
+      flex-shrink: 0;
+      transition: transform .28s var(--spring)
+    }
+
+    .lb-item:hover .lb-rank {
+      transform: scale(1.18) rotate(-4deg)
+    }
+
+    /* NOTIF ICON */
+    .notif-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: var(--input);
+      border: 1px solid var(--border2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      transition: transform .28s var(--spring)
+    }
+
+    .notif-icon-box svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .offer-item:hover .notif-icon-box {
+      transform: scale(1.08) rotate(-4deg)
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      top: 82px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-30px);
+      background: var(--text);
+      color: var(--bg);
+      padding: 13px 26px;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 900;
+      z-index: 999;
+      opacity: 0;
+      transition: all .4s var(--spring);
+      white-space: nowrap;
+      box-shadow: var(--shadow2), var(--glow);
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    .toast.gone {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px)
+    }
+
+    /* VERIFIED */
+    .v-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: var(--accentG);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(200, 75, 17, .35);
+      flex-shrink: 0
+    }
+
+    .v-check svg {
+      width: 10px;
+      height: 10px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    /* SCROLL REVEAL */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .5s ease, transform .5s var(--spring)
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 4px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent)
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.8)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    /* REGISTER & GUEST */
+    .login-panel {
+      display: none
+    }
+
+    .login-panel.active {
+      display: block;
+      animation: viewIn .4s var(--ease) both
+    }
+
+    .guest-btn {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1.5px solid var(--border2);
+      color: var(--text);
+      padding: 14px;
+      border-radius: var(--r);
+      font-size: 14px;
+      font-weight: 900;
+      width: 100%;
+      cursor: pointer;
+      transition: all .28s var(--spring);
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px
+    }
+
+    .guest-btn:hover {
+      background: var(--card2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow)
+    }
+
+    .guest-btn:active {
+      transform: scale(.97)
+    }
+
+    .guest-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .login-switch-link {
+      color: var(--accent);
+      font-weight: 900;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .login-switch-link:hover {
+      text-decoration: underline
+    }
+
+    .guest-banner {
+      background: rgba(240, 165, 0, .1);
+      border: 1px solid rgba(240, 165, 0, .25);
+      border-radius: var(--r);
+      padding: 12px 16px;
+      margin: 14px 18px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      animation: fadeUp .4s var(--ease) both
+    }
+
+    .guest-banner svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0
+    }
+
+    .guest-banner-btn {
+      background: var(--accentG);
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-right: auto;
+      white-space: nowrap;
+      font-family: 'Tajawal', sans-serif
+    }
+
+    .inp-row {
+      position: relative
+    }
+
+    .inp-row .inp {
+      padding-left: 44px
+    }
+
+    .inp-row .inp-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+
+    .inp-row .inp-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--sub2);
+      fill: none;
+      stroke-width: 2
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <svg style="display:none" id="icons" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    stroke-linejoin="round">
+    <defs>
+      <symbol id="ic-home" viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        <polyline points="9,22 9,12 15,12 15,22" />
+      </symbol>
+      <symbol id="ic-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </symbol>
+      <symbol id="ic-plus" viewBox="0 0 24 24">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+      </symbol>
+      <symbol id="ic-msg" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </symbol>
+      <symbol id="ic-user" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </symbol>
+      <symbol id="ic-bell" viewBox="0 0 24 24">
+        <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+        <path d="M13.73 21a2 2 0 01-3.46 0" />
+      </symbol>
+      <symbol id="ic-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" />
+        <path
+          d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+      </symbol>
+      <symbol id="ic-building" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M8 3v18M16 3v18M3 9h18M3 15h18" />
+      </symbol>
+      <symbol id="ic-arrowl" viewBox="0 0 24 24">
+        <polyline points="15,18 9,12 15,6" />
+      </symbol>
+      <symbol id="ic-arrowr" viewBox="0 0 24 24">
+        <polyline points="9,18 15,12 9,6" />
+      </symbol>
+      <symbol id="ic-back" viewBox="0 0 24 24">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12,19 5,12 12,5" />
+      </symbol>
+      <symbol id="ic-check" viewBox="0 0 24 24">
+        <polyline points="20,6 9,17 4,12" />
+      </symbol>
+      <symbol id="ic-star" viewBox="0 0 24 24">
+        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+      </symbol>
+      <symbol id="ic-code" viewBox="0 0 24 24">
+        <polyline points="16,18 22,12 16,6" />
+        <polyline points="8,6 2,12 8,18" />
+      </symbol>
+      <symbol id="ic-palette" viewBox="0 0 24 24">
+        <circle cx="13.5" cy="6.5" r=".5" />
+        <circle cx="17.5" cy="10.5" r=".5" />
+        <circle cx="8.5" cy="7.5" r=".5" />
+        <circle cx="6.5" cy="12.5" r=".5" />
+        <path
+          d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+      </symbol>
+      <symbol id="ic-brain" viewBox="0 0 24 24">
+        <path
+          d="M9.5 2A2.5 2.5 0 007 4.5A2.5 2.5 0 004.5 7A2.5 2.5 0 002 9.5v1A2.5 2.5 0 004.5 13A2.5 2.5 0 007 15.5A2.5 2.5 0 009.5 18h1" />
+        <path
+          d="M14.5 2A2.5 2.5 0 0117 4.5A2.5 2.5 0 0119.5 7A2.5 2.5 0 0122 9.5v1a2.5 2.5 0 01-2.5 2.5A2.5 2.5 0 0117 15.5A2.5 2.5 0 0114.5 18h-1" />
+        <path d="M12 18v4M9 22h6" />
+      </symbol>
+      <symbol id="ic-shield" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </symbol>
+      <symbol id="ic-brief" viewBox="0 0 24 24">
+        <rect x="2" y="7" width="20" height="14" rx="2" />
+        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+      </symbol>
+      <symbol id="ic-globe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+      </symbol>
+      <symbol id="ic-film" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="2" />
+        <path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5" />
+      </symbol>
+      <symbol id="ic-calc" viewBox="0 0 24 24">
+        <rect x="4" y="2" width="16" height="20" rx="2" />
+        <line x1="8" y1="6" x2="16" y2="6" />
+        <line x1="8" y1="10" x2="8" y2="10" />
+        <line x1="12" y1="10" x2="12" y2="10" />
+        <line x1="16" y1="10" x2="16" y2="10" />
+        <line x1="8" y1="14" x2="8" y2="14" />
+        <line x1="12" y1="14" x2="12" y2="14" />
+        <line x1="16" y1="14" x2="16" y2="14" />
+        <line x1="8" y1="18" x2="12" y2="18" />
+        <line x1="16" y1="18" x2="16" y2="18" />
+      </symbol>
+      <symbol id="ic-bulb" viewBox="0 0 24 24">
+        <line x1="9" y1="18" x2="15" y2="18" />
+        <line x1="10" y1="22" x2="14" y2="22" />
+        <path
+          d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" />
+      </symbol>
+      <symbol id="ic-send" viewBox="0 0 24 24">
+        <line x1="22" y1="2" x2="11" y2="13" />
+        <polygon points="22,2 15,22 11,13 2,9" />
+      </symbol>
+      <symbol id="ic-pencil" viewBox="0 0 24 24">
+        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+      </symbol>
+      <symbol id="ic-wallet" viewBox="0 0 24 24">
+        <path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" />
+        <path d="M16 3H5a2 2 0 00-2 2v2h16V5a2 2 0 00-2-2h-1z" />
+        <circle cx="16" cy="14" r="1" fill="currentColor" />
+      </symbol>
+      <symbol id="ic-trophy" viewBox="0 0 24 24">
+        <path d="M6 9H4.5a2.5 2.5 0 010-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 000-5H18" />
+        <path d="M4 22h16M10 22v-4M14 22v-4M8 2h8v7a4 4 0 01-8 0V2z" />
+      </symbol>
+      <symbol id="ic-person2" viewBox="0 0 24 24">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </symbol>
+      <symbol id="ic-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+        <line x1="12" y1="17" x2="12.01" y2="17" />
+      </symbol>
+      <symbol id="ic-logout" viewBox="0 0 24 24">
+        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+        <polyline points="16,17 21,12 16,7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </symbol>
+      <symbol id="ic-phone" viewBox="0 0 24 24">
+        <path
+          d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 10.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.43 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.77a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+      </symbol>
+      <symbol id="ic-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12,6 12,12 16,14" />
+      </symbol>
+      <symbol id="ic-users" viewBox="0 0 24 24">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </symbol>
+      <symbol id="ic-dollar" viewBox="0 0 24 24">
+        <line x1="12" y1="1" x2="12" y2="23" />
+        <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+      </symbol>
+      <symbol id="ic-camera" viewBox="0 0 24 24">
+        <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+        <circle cx="12" cy="13" r="4" />
+      </symbol>
+      <symbol id="ic-box3d" viewBox="0 0 24 24">
+        <path
+          d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+        <polyline points="3.27,6.96 12,12.01 20.73,6.96" />
+        <line x1="12" y1="22.08" x2="12" y2="12" />
+      </symbol>
+      <symbol id="ic-cpu" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <line x1="9" y1="1" x2="9" y2="4" />
+        <line x1="15" y1="1" x2="15" y2="4" />
+        <line x1="9" y1="20" x2="9" y2="23" />
+        <line x1="15" y1="20" x2="15" y2="23" />
+        <line x1="20" y1="9" x2="23" y2="9" />
+        <line x1="20" y1="14" x2="23" y2="14" />
+        <line x1="1" y1="9" x2="4" y2="9" />
+        <line x1="1" y1="14" x2="4" y2="14" />
+      </symbol>
+      <symbol id="ic-mic" viewBox="0 0 24 24">
+        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
+        <path d="M19 10v2a7 7 0 01-14 0v-2" />
+        <line x1="12" y1="19" x2="12" y2="23" />
+        <line x1="8" y1="23" x2="16" y2="23" />
+      </symbol>
+      <symbol id="ic-layers" viewBox="0 0 24 24">
+        <polygon points="12,2 2,7 12,12 22,7" />
+        <polyline points="2,17 12,22 22,17" />
+        <polyline points="2,12 12,17 22,12" />
+      </symbol>
+      <symbol id="ic-anchor" viewBox="0 0 24 24">
+        <circle cx="12" cy="5" r="3" />
+        <line x1="12" y1="22" x2="12" y2="8" />
+        <path d="M5 12H2a10 10 0 0020 0h-3" />
+      </symbol>
+      <symbol id="ic-activity" viewBox="0 0 24 24">
+        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+      </symbol>
+      <symbol id="ic-award" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="6" />
+        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+      </symbol>
+      <symbol id="ic-clip" viewBox="0 0 24 24">
+        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" />
+        <rect x="8" y="2" width="8" height="4" rx="1" />
+      </symbol>
+      <symbol id="ic-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </symbol>
+      <symbol id="ic-moon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- REQUEST MODAL -->
+  <div id="request-modal" class="modal-overlay" onclick="closeRequestModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="closeRequestModal()">✕</button>
+      <div class="modal-title">طلب تعلّم مهارة</div>
+      <div style="font-size:14px;color:var(--sub);margin-bottom:18px;line-height:1.7">من الطالب: <strong id="rm-name"
+          style="color:var(--accent)"></strong></div>
+      <span class="add-lbl" style="margin-top:0">نوع الجلسة</span>
+      <select class="inp" id="rm-type">
+        <option>عن بُعد (Online)</option>
+        <option>حضوري (داخل الحرم الجامعي)</option>
+        <option>عمل مشترك على مشروع</option>
+        <option>هايبرد (مرن)</option>
+      </select>
+      <span class="add-lbl">الوقت المفضل</span>
+      <select class="inp" id="rm-time">
+        <option>صباحاً (٨ ص - ١٢ م)</option>
+        <option>ظهراً (١٢ - ٤ م)</option>
+        <option>مساءً (٤ م - ٩ م)</option>
+        <option>نهاية الأسبوع</option>
+      </select>
+      <span class="add-lbl">عدد الجلسات</span>
+      <select class="inp">
+        <option>جلسة واحدة</option>
+        <option>٢-٣ جلسات</option>
+        <option>٤-٦ جلسات (كورس مصغر)</option>
+        <option>مفتوح / حسب الحاجة</option>
+      </select>
+      <span class="add-lbl">ملاحظاتك (اختياري)</span>
+      <textarea class="inp" style="height:75px" placeholder="اكتب التفاصيل التي تريد التركيز عليها..."></textarea>
+      <button class="btn btn-p ripple-host" style="margin-top:18px" onclick="confirmRequest()">تأكيد وإرسال
+        الطلب</button>
+    </div>
+  </div>
+
+  <!-- LOGIN VIEW -->
+  <div id="login-view" class="view active">
+    <div class="login-wrap">
+      <div class="login-card">
+        <!-- Hero Band -->
+        <div class="login-hero">
+          <div class="login-logo-wrap">
+            <span class="login-logo">نُول</span>
+            <p class="login-tagline">سوق المهارات الجامعي الأذكى<br>للطلاب والشركات في المملكة 🇸🇦</p>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="login-body">
+          <!-- ===== LOGIN PANEL ===== -->
+          <div id="login-panel" class="login-panel active">
+            <div class="login-tabs">
+              <button class="login-tab active" id="tab-student" onclick="switchLogin('student')">🎓 طالب جامعي</button>
+              <button class="login-tab" id="tab-company" onclick="switchLogin('company')">🏢 جهة أعمال</button>
+            </div>
+            <div id="login-student-form">
+              <span class="login-form-label">الجامعة</span>
+              <select class="inp" id="univ-sel">
+                <option value="" disabled selected>اختر جامعتك...</option>
+                <option>جامعة الأمير مقرن بن عبدالعزيز</option>
+                <option>جامعة الملك سعود</option>
+                <option>جامعة الملك فهد للبترول والمعادن</option>
+                <option>جامعة الملك عبدالعزيز</option>
+                <option>جامعة الملك خالد</option>
+                <option>جامعة القصيم</option>
+                <option>جامعة الإمام عبدالرحمن بن فيصل</option>
+                <option>جامعة حائل</option>
+                <option>جامعة تبوك</option>
+                <option>جامعة الأميرة نورة بنت عبدالرحمن</option>
+              </select>
+              <span class="login-form-label">الإيميل الجامعي</span>
+              <input type="email" class="inp" id="login-email" placeholder="example@university.edu.sa">
+            </div>
+            <div id="login-company-form" style="display:none">
+              <span class="login-form-label">اسم الشركة / المؤسسة</span>
+              <input type="text" class="inp" id="comp-name" placeholder="شركة التقنية الحديثة">
+              <span class="login-form-label">الإيميل</span>
+              <input type="email" class="inp" id="login-comp-email" placeholder="info@company.com">
+            </div>
+            <span class="login-form-label">كلمة المرور</span>
+            <input type="password" class="inp" id="login-password" placeholder="••••••">
+            <div class="login-btn-wrap">
+              <button class="btn btn-p ripple-host" onclick="doLogin()">دخول إلى نُول ←</button>
+            </div>
+            <div class="login-divider"><span>أو</span></div>
+            <button class="guest-btn" onclick="doGuestLogin()">
+              <svg>
+                <use href="#ic-user" />
+              </svg>
+              تصفّح كضيف بدون حساب
+            </button>
+            <p class="login-footer" style="margin-top:16px">ما عندك حساب؟ <a class="login-switch-link"
+                onclick="showPanel('register')">سجّل الآن</a></p>
+          </div>
+
+          <!-- ===== REGISTER PANEL ===== -->
+          <div id="register-panel" class="login-panel">
+            <div class="login-tabs">
+              <button class="login-tab active" id="reg-tab-student" onclick="switchRegType('student')">🎓 طالب
+                جامعي</button>
+              <button class="login-tab" id="reg-tab-company" onclick="switchRegType('company')">🏢 جهة أعمال</button>
+            </div>
+            <div id="reg-student-form">
+              <span class="login-form-label">الاسم الكامل</span>
+              <input type="text" class="inp" id="reg-name" placeholder="محمد أحمد">
+              <span class="login-form-label">الجامعة</span>
+              <select class="inp" id="reg-univ">
+                <option value="" disabled selected>اختر جامعتك...</option>
+                <option>جامعة الأمير مقرن بن عبدالعزيز</option>
+                <option>جامعة الملك سعود</option>
+                <option>جامعة الملك فهد للبترول والمعادن</option>
+                <option>جامعة الملك عبدالعزيز</option>
+                <option>جامعة الملك خالد</option>
+                <option>جامعة القصيم</option>
+                <option>جامعة الإمام عبدالرحمن بن فيصل</option>
+                <option>جامعة حائل</option>
+                <option>جامعة تبوك</option>
+                <option>جامعة الأميرة نورة بنت عبدالرحمن</option>
+              </select>
+              <span class="login-form-label">الإيميل الجامعي</span>
+              <input type="email" class="inp" id="reg-email" placeholder="you@university.edu.sa">
+            </div>
+            <div id="reg-company-form" style="display:none">
+              <span class="login-form-label">اسم الشركة</span>
+              <input type="text" class="inp" id="reg-comp-name" placeholder="شركة التقنية الحديثة">
+              <span class="login-form-label">رقم السجل التجاري</span>
+              <input type="text" class="inp" id="reg-comp-reg" placeholder="٤٠٣٠٠٠٠٠٠٠">
+              <span class="login-form-label">القطاع</span>
+              <select class="inp" id="reg-sector">
+                <option disabled selected>اختر القطاع...</option>
+                <option>تقنية المعلومات</option>
+                <option>تصميم وإبداع</option>
+                <option>مالية وأعمال</option>
+                <option>تسويق وإعلام</option>
+                <option>تعليم وتدريب</option>
+                <option>صحة وطب</option>
+                <option>أخرى</option>
+              </select>
+              <span class="login-form-label">الإيميل</span>
+              <input type="email" class="inp" id="reg-comp-email" placeholder="info@company.com">
+            </div>
+            <span class="login-form-label">كلمة المرور</span>
+            <input type="password" class="inp" id="reg-password" placeholder="٦ أحرف على الأقل">
+            <span class="login-form-label">تأكيد كلمة المرور</span>
+            <input type="password" class="inp" id="reg-password2" placeholder="أعد كتابة كلمة المرور">
+            <div class="login-btn-wrap">
+              <button class="btn btn-p ripple-host" onclick="doRegister()">إنشاء حساب في نُول ←</button>
+            </div>
+            <p class="login-footer" style="margin-top:16px">عندك حساب؟ <a class="login-switch-link"
+                onclick="showPanel('login')">سجّل دخول</a></p>
+          </div>
+
+          <div class="login-trust">
+            <div class="trust-item"><svg>
+                <use href="#ic-shield" />
+              </svg>بيانات مشفّرة</div>
+            <div class="trust-item"><svg>
+                <use href="#ic-check" />
+              </svg>مجاني للطلاب</div>
+            <div class="trust-item"><svg>
+                <use href="#ic-users" />
+              </svg>+٢٠٠٠ موهبة</div>
+          </div>
+          <p class="login-footer">بالدخول أنت توافق على <a>سياسة الخصوصية</a> وشروط الاستخدام</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEED VIEW -->
+  <div id="feed-view" class="view">
+    <div class="guest-banner" id="guest-banner">
+      <svg>
+        <use href="#ic-user" />
+      </svg>
+      <span>أنت تتصفح كضيف — سجّل حساب للاستفادة الكاملة</span>
+      <button class="guest-banner-btn" onclick="goToRegister()">سجّل الآن</button>
+    </div>
+    <header class="hdr">
+      <div class="logo">نُول</div>
+      <div class="hdr-row">
+        <div class="hdr-icon" onclick="openNotifs()" style="position:relative"><svg>
+            <use href="#ic-bell" />
+          </svg>
+          <div class="notif-badge" id="n-badge1">5</div>
+        </div>
+        <div class="hdr-icon" onclick="go('settings-view')"><svg>
+            <use href="#ic-settings" />
+          </svg></div>
+      </div>
+    </header>
+    <div class="top-tabs-container">
+      <div class="top-tabs">
+        <div class="top-tab active" id="tab-st-talents" onclick="switchFeed('talents')">المواهب والخدمات</div>
+        <div class="top-tab" id="tab-st-projects" onclick="switchFeed('projects')">مشاريع الشركات</div>
+      </div>
+    </div>
+    <div class="cats" id="feed-cats">
+      <div class="cat active" data-val="all" onclick="filterCat(this,'all')"><svg>
+          <use href="#ic-star" />
+        </svg><span>الكل</span></div>
+      <div class="cat" data-val="coding" onclick="filterCat(this,'coding')"><svg>
+          <use href="#ic-code" />
+        </svg><span>برمجة</span></div>
+      <div class="cat" data-val="design" onclick="filterCat(this,'design')"><svg>
+          <use href="#ic-palette" />
+        </svg><span>تصميم</span></div>
+      <div class="cat" data-val="business" onclick="filterCat(this,'business')"><svg>
+          <use href="#ic-brief" />
+        </svg><span>أعمال</span></div>
+      <div class="cat" data-val="lang" onclick="filterCat(this,'lang')"><svg>
+          <use href="#ic-globe" />
+        </svg><span>لغات</span></div>
+      <div class="cat" data-val="media" onclick="filterCat(this,'media')"><svg>
+          <use href="#ic-film" />
+        </svg><span>مونتاج</span></div>
+      <div class="cat" data-val="math" onclick="filterCat(this,'math')"><svg>
+          <use href="#ic-calc" />
+        </svg><span>علوم</span></div>
+      <div class="cat" data-val="other" onclick="filterCat(this,'other')"><svg>
+          <use href="#ic-bulb" />
+        </svg><span>تطوير</span></div>
+      <div class="cat" data-val="cyber" onclick="filterCat(this,'cyber')"><svg>
+          <use href="#ic-shield" />
+        </svg><span>أمن سيبراني</span></div>
+      <div class="cat" data-val="ai" onclick="filterCat(this,'ai')"><svg>
+          <use href="#ic-brain" />
+        </svg><span>ذكاء اصطناعي</span></div>
+    </div>
+    <div class="sort-bar" id="feed-sort-bar">
+      <span style="font-size:13px;color:var(--sub2);font-weight:900">فرز:</span>
+      <select class="inp" id="sort-sel" onchange="buildFeed()">
+        <option value="new">الأحدث</option>
+        <option value="trainees">الأكثر تدريباً</option>
+        <option value="rank">التصنيف</option>
+        <option value="rating">الأعلى تقييماً</option>
+      </select>
+    </div>
+    <div class="feed stagger" id="feed-container"></div>
+  </div>
+
+  <!-- SEARCH VIEW -->
+  <div id="search-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div style="width:28px"></div>
+      <div class="hdr-title">بحث عن مواهب</div>
+      <div class="hdr-icon" onclick="go('settings-view')"><svg>
+          <use href="#ic-settings" />
+        </svg></div>
+    </header>
+    <div class="sbox" style="margin-top:0"><input type="text" id="search-inp" oninput="searchSkills(this.value)"
+        placeholder="ابحث عن مهارة أو طالب..."><span class="sico"><svg>
+          <use href="#ic-search" />
+        </svg></span></div>
+    <div id="skills-list-container">
+      <div class="sec-t">التخصصات</div>
+      <div class="skill-list stagger" id="skills-list">
+        <div class="skill-item" onclick="openOffers('design')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#0d9488,#3b82f6)"><svg>
+                <use href="#ic-palette" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">التصميم والهندسة</div>
+              <div style="font-size:12px;color:var(--sub2)">UI/UX, 3D, AutoCAD, Figma, Rhino</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('coding')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#4f46e5,#7c3aed)"><svg>
+                <use href="#ic-code" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">البرمجة والبيانات</div>
+              <div style="font-size:12px;color:var(--sub2)">Python, React, SQL, Flutter, Node</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('ai')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#7c3aed,#4338ca)"><svg>
+                <use href="#ic-brain" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">الذكاء الاصطناعي</div>
+              <div style="font-size:12px;color:var(--sub2)">ML, Prompt Engineering, LangChain, CV</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('cyber')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#047857,#065f46)"><svg>
+                <use href="#ic-shield" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">الأمن السيبراني</div>
+              <div style="font-size:12px;color:var(--sub2)">Ethical Hacking, CCNA, Linux, Pentest</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('business')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#d97706,#f59e0b)"><svg>
+                <use href="#ic-brief" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">الإدارة والأعمال</div>
+              <div style="font-size:12px;color:var(--sub2)">تسويق, إدارة مشاريع, Notion, Excel</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('lang')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#8b5cf6,#c084fc)"><svg>
+                <use href="#ic-globe" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">اللغات والترجمة</div>
+              <div style="font-size:12px;color:var(--sub2)">إنجليزي, فرنسي, IELTS, محادثة</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('media')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#0369a1,#0ea5e9)"><svg>
+                <use href="#ic-film" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">المونتاج والتصوير</div>
+              <div style="font-size:12px;color:var(--sub2)">Premiere, After Effects, Lightroom</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('math')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#15803d,#22c55e)"><svg>
+                <use href="#ic-calc" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">العلوم والرياضيات</div>
+              <div style="font-size:12px;color:var(--sub2)">Calculus, فيزياء, إحصاء, طب</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+        <div class="skill-item" onclick="openOffers('other')">
+          <div class="skill-l">
+            <div class="cat-av" style="background:linear-gradient(135deg,#dc2626,#f43f5e)"><svg>
+                <use href="#ic-bulb" />
+              </svg></div>
+            <div>
+              <div style="font-weight:900;font-size:15px;margin-bottom:3px">تطوير شخصي وأخرى</div>
+              <div style="font-size:12px;color:var(--sub2)">CV, مقابلات, قيادة, كتابة إبداعية</div>
+            </div>
+          </div><span class="skill-arrow"><svg>
+              <use href="#ic-arrowl" />
+            </svg></span>
+        </div>
+      </div>
+    </div>
+    <div id="search-results-container" style="display:none">
+      <div class="sec-t">نتائج البحث</div>
+      <div class="skill-list" id="all-users-list" style="padding:0 20px"></div>
+    </div>
+  </div>
+
+  <!-- OFFERS VIEW -->
+  <div id="offers-view" class="view">
+    <header class="hdr">
+      <div class="hdr-icon" onclick="goBack()"><svg>
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-title" id="offers-title">الخدمات المتاحة</div>
+      <div style="width:28px"></div>
+    </header>
+    <div class="skill-list stagger" id="offers-list" style="margin-top:16px;padding:0 20px"></div>
+  </div>
+
+  <!-- COMP DASH -->
+  <div id="comp-dash-view" class="view">
+    <header class="hdr">
+      <div class="logo">نُول للأعمال</div>
+      <div class="hdr-row">
+        <div class="hdr-icon" onclick="openNotifs()" style="position:relative"><svg>
+            <use href="#ic-bell" />
+          </svg>
+          <div class="notif-badge" id="n-badge2">3</div>
+        </div>
+        <div class="hdr-icon" onclick="go('settings-view')"><svg>
+            <use href="#ic-settings" />
+          </svg></div>
+      </div>
+    </header>
+    <div class="comp-hero">
+      <div class="comp-hero-icon"><svg>
+          <use href="#ic-building" />
+        </svg></div>
+      <div style="position:relative;z-index:1">
+        <div
+          style="font-size:12px;font-weight:900;opacity:.8;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">
+          لوحة تحكم الأعمال</div>
+        <div style="font-size:22px;font-weight:900;margin-bottom:6px">مرحباً في نُول للأعمال</div>
+        <div style="font-size:13px;opacity:.88;line-height:1.7">استقطب أفضل المواهب الجامعية<br>بأسعار تنافسية لمشاريعك.
+        </div>
+        <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+          <div class="comp-stat-pill"><span style="font-size:20px;display:block;font-weight:900"
+              id="cs1">٣٢+</span>موهبة نشطة</div>
+          <div class="comp-stat-pill"><span style="font-size:20px;display:block;font-weight:900" id="cs2">٩٨٪</span>معدل
+            الإنجاز</div>
+          <div class="comp-stat-pill"><span style="font-size:20px;display:block;font-weight:900"
+              id="cs3">٤.٩</span>متوسط التقييم</div>
+        </div>
+      </div>
+    </div>
+    <div class="sort-bar" style="padding-top:18px"><span style="font-size:14px;font-weight:900">مواهب مرشحة لك</span>
+    </div>
+    <div class="skill-list stagger" id="comp-matches-list" style="margin-top:12px;padding:0 20px"></div>
+  </div>
+
+  <!-- COMP SEARCH -->
+  <div id="comp-search-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div style="width:28px"></div>
+      <div class="hdr-title">البحث عن مواهب</div>
+      <div class="hdr-icon" onclick="go('settings-view')"><svg>
+          <use href="#ic-settings" />
+        </svg></div>
+    </header>
+    <div class="sbox" style="margin-top:0"><input type="text" oninput="searchCompSkills(this.value)"
+        placeholder="ابحث: Figma, Python..."><span class="sico"><svg>
+          <use href="#ic-search" />
+        </svg></span></div>
+    <div class="cats" id="comp-search-cats">
+      <div class="cat active" data-val="all" onclick="filterCompCat(this,'all')"><svg>
+          <use href="#ic-star" />
+        </svg><span>الكل</span></div>
+      <div class="cat" data-val="coding" onclick="filterCompCat(this,'coding')"><svg>
+          <use href="#ic-code" />
+        </svg><span>برمجة</span></div>
+      <div class="cat" data-val="design" onclick="filterCompCat(this,'design')"><svg>
+          <use href="#ic-palette" />
+        </svg><span>تصميم</span></div>
+      <div class="cat" data-val="ai" onclick="filterCompCat(this,'ai')"><svg>
+          <use href="#ic-brain" />
+        </svg><span>ذكاء اصطناعي</span></div>
+      <div class="cat" data-val="media" onclick="filterCompCat(this,'media')"><svg>
+          <use href="#ic-film" />
+        </svg><span>محتوى</span></div>
+      <div class="cat" data-val="business" onclick="filterCompCat(this,'business')"><svg>
+          <use href="#ic-brief" />
+        </svg><span>أعمال</span></div>
+      <div class="cat" data-val="cyber" onclick="filterCompCat(this,'cyber')"><svg>
+          <use href="#ic-shield" />
+        </svg><span>أمن</span></div>
+    </div>
+    <div class="sort-bar" style="padding-bottom:10px"><span
+        style="font-size:13px;color:var(--sub2);font-weight:900">فرز:</span><select class="inp" id="comp-sort-sel"
+        onchange="buildCompMatches(document.querySelector('#comp-search-cats .cat.active').dataset.val,'comp-search-list')">
+        <option value="trainees">الأكثر تدريباً</option>
+        <option value="rank">الأعلى تصنيفاً</option>
+      </select></div>
+    <div class="skill-list stagger" id="comp-search-list" style="margin-top:6px;padding:0 20px"></div>
+  </div>
+
+  <!-- COMP POST -->
+  <div id="comp-post-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-icon" onclick="goBack()"
+        style="font-size:13px;font-weight:900;color:var(--sub2);width:auto;border-radius:10px;padding:0 12px">إلغاء
+      </div>
+      <div class="hdr-title">طرح مشروع جديد</div>
+      <div class="hdr-icon"
+        style="color:var(--accent);font-size:13px;font-weight:900;width:auto;border-radius:10px;padding:0 12px"
+        onclick="submitProject()">نشر</div>
+    </header>
+    <div class="add-wrap">
+      <span class="add-lbl">عنوان المشروع</span>
+      <input type="text" class="inp" id="proj-title" placeholder="مثال: مطلوب مصمم UI لتطبيق صحي">
+      <span class="add-lbl">المهارة المطلوبة</span>
+      <select class="inp" id="proj-cat">
+        <option value="coding">برمجة وتطوير</option>
+        <option value="design">تصميم واجهات UI/UX</option>
+        <option value="media">مونتاج وصناعة محتوى</option>
+        <option value="business">إدارة أعمال وتسويق</option>
+        <option value="ai">ذكاء اصطناعي</option>
+        <option value="cyber">أمن سيبراني</option>
+      </select>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <div style="flex:1"><span class="add-lbl" style="margin-top:0">الميزانية (ريال)</span><input type="number"
+            class="inp" id="proj-budget" placeholder="مثال: 800"></div>
+        <div style="flex:1"><span class="add-lbl" style="margin-top:0">المدة</span><select class="inp" id="proj-time">
+            <option>١-٣ أيام</option>
+            <option>أسبوع</option>
+            <option>أسبوعين</option>
+            <option>شهر فأكثر</option>
+          </select></div>
+      </div>
+      <span class="add-lbl">وصف المشروع</span>
+      <textarea class="inp" id="proj-desc" placeholder="اكتب تفاصيل المشروع بدقة..."></textarea>
+      <span class="add-lbl">الخبرة المطلوبة</span>
+      <select class="inp">
+        <option>مبتدئ</option>
+        <option>متوسط (١-٢ سنة)</option>
+        <option>متقدم (٢+ سنة)</option>
+      </select>
+      <button class="btn btn-p ripple-host" style="margin-top:24px" onclick="submitProject()">نشر المشروع والبحث عن
+        مواهب</button>
+    </div>
+  </div>
+
+  <!-- ASSIGN TASK -->
+  <div id="assign-task-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-icon" onclick="goBack()"
+        style="font-size:13px;font-weight:900;color:var(--sub2);width:auto;border-radius:10px;padding:0 12px">إلغاء
+      </div>
+      <div class="hdr-title">إسناد مهمة</div>
+      <div style="width:28px"></div>
+    </header>
+    <div class="add-wrap">
+      <div
+        style="background:var(--card);padding:18px;border-radius:var(--r);border:1px solid var(--border);margin-bottom:20px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow)">
+        <div class="av" id="assign-av" style="width:56px;height:56px;font-size:22px;flex-shrink:0"></div>
+        <div>
+          <div style="font-size:12px;color:var(--sub2);margin-bottom:4px;font-weight:700">إسناد المهمة إلى:</div>
+          <div style="font-size:17px;font-weight:900" id="assign-name"></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:700;margin-top:2px" id="assign-title"></div>
+        </div>
+      </div>
+      <span class="add-lbl">عنوان المهمة</span>
+      <input type="text" class="inp" placeholder="مثال: تصميم صفحات التطبيق الرئيسية">
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <div style="flex:1"><span class="add-lbl" style="margin-top:0">الميزانية (ريال)</span><input type="number"
+            class="inp" placeholder="مثال: 500"></div>
+        <div style="flex:1"><span class="add-lbl" style="margin-top:0">المدة</span><select class="inp">
+            <option>أيام</option>
+            <option>أسبوع</option>
+            <option>أسبوعين</option>
+            <option>شهر</option>
+          </select></div>
+      </div>
+      <span class="add-lbl">وصف المهمة</span>
+      <textarea class="inp" placeholder="اكتب تفاصيل المهمة بوضوح..."></textarea>
+      <span class="add-lbl">طريقة الدفع</span>
+      <select class="inp">
+        <option>محفظة نُول</option>
+        <option>تحويل بنكي</option>
+        <option>دفع بعد الإنجاز</option>
+      </select>
+      <button class="btn btn-p ripple-host" style="margin-top:24px" onclick="submitAssignTask()">إرسال المهمة
+        للطالب</button>
+    </div>
+  </div>
+
+  <!-- NOTIF VIEW -->
+  <div id="notif-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-icon" onclick="goBack()"><svg>
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-title">الإشعارات</div>
+      <div style="width:28px"></div>
+    </header>
+    <div class="skill-list stagger" id="notif-list" style="margin-top:16px;padding:0 20px"></div>
+  </div>
+
+  <!-- WALLET VIEW -->
+  <div id="wallet-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-icon" onclick="goBack()"><svg>
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-title">المحفظة</div>
+      <div style="width:28px"></div>
+    </header>
+    <div style="padding:22px">
+      <div class="wallet-card" style="margin-bottom:26px">
+        <div style="font-size:13px;opacity:.88;font-weight:700;margin-bottom:8px;position:relative;z-index:1">الرصيد
+          المتاح</div>
+        <div style="font-size:56px;font-weight:900;letter-spacing:1px;line-height:1;position:relative;z-index:1"
+          id="wallet-balance">٠</div>
+        <div style="font-size:15px;opacity:.9;font-weight:700;margin-top:7px;position:relative;z-index:1"
+          id="wallet-currency">نقطة نُول</div>
+        <div style="display:flex;gap:11px;margin-top:24px;position:relative;z-index:1">
+          <button class="btn"
+            style="flex:1;background:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28);border-radius:13px;padding:12px"
+            onclick="showToast('قريباً - شحن المحفظة')">شحن</button>
+          <button class="btn"
+            style="flex:1;background:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28);border-radius:13px;padding:12px"
+            onclick="showToast('قريباً - سحب الرصيد')">سحب</button>
+        </div>
+      </div>
+      <div class="sec-t" style="padding:0 0 12px">سجل العمليات</div>
+      <div id="wallet-history"></div>
+    </div>
+  </div>
+
+  <!-- ADD VIEW -->
+  <div id="add-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-icon" onclick="goBack()"
+        style="font-size:13px;font-weight:900;color:var(--sub2);width:auto;border-radius:10px;padding:0 12px">إلغاء
+      </div>
+      <div class="hdr-title">تقديم خدمة جديدة</div>
+      <div class="hdr-icon"
+        style="color:var(--accent);font-size:13px;font-weight:900;width:auto;border-radius:10px;padding:0 12px"
+        onclick="submitSkill()">نشر</div>
+    </header>
+    <div class="add-wrap">
+      <span class="add-lbl">نوع الخدمة</span>
+      <div class="type-grid">
+        <div class="type-card active" onclick="selType(this)">
+          <div class="type-icon"><svg>
+              <use href="#ic-user" />
+            </svg></div>
+          <div class="type-t">جلسة فردية</div>
+        </div>
+        <div class="type-card" onclick="selType(this)">
+          <div class="type-icon"><svg>
+              <use href="#ic-users" />
+            </svg></div>
+          <div class="type-t">ورشة جماعية</div>
+        </div>
+        <div class="type-card" onclick="selType(this)">
+          <div class="type-icon"><svg>
+              <use href="#ic-box3d" />
+            </svg></div>
+          <div class="type-t">خدمة مكتملة</div>
+        </div>
+      </div>
+      <span class="add-lbl">عنوان الخدمة</span>
+      <input type="text" class="inp" placeholder="مثال: دروس Python من الصفر لـ ٥ مستويات">
+      <span class="add-lbl">التصنيف</span>
+      <select class="inp">
+        <option>برمجة وبيانات</option>
+        <option>تصميم وهندسة</option>
+        <option>ذكاء اصطناعي</option>
+        <option>أمن سيبراني</option>
+        <option>إدارة وأعمال</option>
+        <option>لغات وترجمة</option>
+        <option>مونتاج وتصوير</option>
+        <option>علوم ورياضيات</option>
+        <option>أخرى</option>
+      </select>
+      <span class="add-lbl">عدد الجلسات / المدة</span>
+      <select class="inp">
+        <option>جلسة واحدة (ساعة)</option>
+        <option>٣ جلسات</option>
+        <option>٥ جلسات</option>
+        <option>١٠ جلسات (كورس كامل)</option>
+        <option>مفتوح / حسب الحاجة</option>
+      </select>
+      <span class="add-lbl">السعر التقريبي (نقاط نُول)</span>
+      <input type="number" class="inp" placeholder="مثال: 150">
+      <span class="add-lbl">وصف الخدمة ومخرجاتها</span>
+      <textarea class="inp" placeholder="اشرح ماذا ستقدم وماذا سيستفيد المتدرب..."></textarea>
+      <span class="add-lbl">الخبرة / الشهادات (اختياري)</span>
+      <input type="text" class="inp" placeholder="مثال: حاصل على Meta Front-End Certificate">
+      <button class="btn btn-p ripple-host" style="margin-top:22px" onclick="submitSkill()">نشر الخدمة في نُول</button>
+    </div>
+  </div>
+
+  <!-- DM VIEW -->
+  <div id="dm-view" class="view">
+    <header class="hdr" style="border-bottom:none">
+      <div class="hdr-title" style="font-size:21px">الرسائل</div>
+      <div class="hdr-icon"><svg>
+          <use href="#ic-pencil" />
+        </svg></div>
+    </header>
+    <div class="sbox" style="margin-top:0"><input type="text" oninput="searchDMs(this.value)"
+        placeholder="البحث في المحادثات..."><span class="sico"><svg>
+          <use href="#ic-search" />
+        </svg></span></div>
+    <div id="dm-list" class="dm-list stagger"></div>
+  </div>
+
+  <!-- CHAT VIEW -->
+  <div id="chat-view" class="view" style="padding-bottom:80px">
+    <header class="hdr">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="hdr-icon" onclick="goBack()"><svg>
+            <use href="#ic-back" />
+          </svg></div>
+        <div class="av" id="chat-av" style="width:40px;height:40px;font-size:15px;cursor:pointer"
+          onclick="openCurrentProfile()"></div>
+        <div>
+          <div class="hdr-title" id="chat-name" style="font-size:15px">-</div>
+          <div
+            style="font-size:11px;color:var(--green);font-weight:700;margin-top:1px;display:flex;align-items:center;gap:4px">
+            <span
+              style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;animation:pulseBadge 2s ease infinite"></span>متصل
+            الآن
+          </div>
+        </div>
+      </div>
+      <div class="hdr-row">
+        <div class="hdr-icon" onclick="showToast('المكالمات الصوتية قريباً!')"><svg>
+            <use href="#ic-phone" />
+          </svg></div>
+        <div class="hdr-icon" onclick="openCurrentProfile()"><svg>
+            <use href="#ic-user" />
+          </svg></div>
+      </div>
+    </header>
+    <div class="chat-area" id="chat-area"></div>
+    <div class="typing-ind" id="typing-ind">
+      <div class="td"></div>
+      <div class="td"></div>
+      <div class="td"></div>
+    </div>
+    <div class="chat-bar">
+      <input class="chat-inp" id="chat-inp" placeholder="اكتب رسالتك..." onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="chat-send ripple-host" onclick="sendMsg()"><svg>
+          <use href="#ic-send" />
+        </svg></button>
+    </div>
+  </div>
+
+  <!-- PROFILE VIEW -->
+  <div id="profile-view" class="view">
+    <header class="hdr"
+      style="border-bottom:none;background:transparent;position:absolute;width:100%;z-index:100;box-shadow:none">
+      <div class="hdr-icon" id="prof-back" onclick="goBack()"
+        style="background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.2)"><svg style="stroke:#fff">
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-icon" id="prof-set" onclick="go('settings-view')"
+        style="background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.2)"><svg style="stroke:#fff">
+          <use href="#ic-settings" />
+        </svg></div>
+    </header>
+    <div class="prof-hdr">
+      <div class="prof-cover" id="prof-cover">
+        <div class="prof-cover-shimmer"></div>
+      </div>
+      <div class="prof-av-wrap" id="prof-av"></div>
+    </div>
+    <div class="prof-info">
+      <div class="prof-name" id="prof-name">-</div>
+      <div class="prof-title-badge" id="prof-title">-</div>
+      <p class="prof-bio" id="prof-bio">-</p>
+      <button class="btn btn-p ripple-host" id="prof-msg-btn"
+        style="width:100%;max-width:320px;display:none;margin-bottom:24px"></button>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="sv" id="ps-learn">0</div>
+          <div class="sl">أُنجزت</div>
+        </div>
+        <div class="stat">
+          <div class="sv" id="ps-teach">0</div>
+          <div class="sl">متدرب</div>
+        </div>
+        <div class="stat">
+          <div class="sv" id="ps-rating">4.9</div>
+          <div class="sl">تقييم</div>
+        </div>
+        <div class="stat">
+          <div class="sv" id="ps-icon">⭐</div>
+          <div class="sl" id="ps-rank" style="color:var(--gold)">تصنيف</div>
+        </div>
+      </div>
+    </div>
+    <div class="ptabs">
+      <button class="ptab active" id="tab-taught" onclick="toggleGrid('taught')">الخدمات</button>
+      <button class="ptab" id="tab-learned" onclick="toggleGrid('learned')">المكتسبات</button>
+      <button class="ptab" id="tab-reviews" onclick="toggleGrid('reviews')">التقييمات</button>
+    </div>
+    <div class="svc-list" id="grid-taught"></div>
+    <div class="svc-list" id="grid-learned" style="display:none"></div>
+    <div id="grid-reviews" style="display:none;padding:0 18px 26px"></div>
+  </div>
+
+  <!-- LB VIEW -->
+  <div id="lb-view" class="view">
+    <header class="hdr">
+      <div class="hdr-icon" onclick="goBack()"><svg>
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-title">المتصدرون</div>
+      <div style="width:28px"></div>
+    </header>
+    <div id="lb-list" class="stagger" style="padding:18px;display:flex;flex-direction:column;gap:11px"></div>
+  </div>
+
+  <!-- SETTINGS VIEW -->
+  <div id="settings-view" class="view">
+    <header class="hdr">
+      <div class="hdr-icon" onclick="goBack()"><svg>
+          <use href="#ic-back" />
+        </svg></div>
+      <div class="hdr-title">الإعدادات</div>
+      <div style="width:28px"></div>
+    </header>
+    <div style="padding:26px 18px;display:flex;flex-direction:column;gap:10px">
+      <div class="set-row" onclick="go('wallet-view')">
+        <div class="set-left"><svg>
+            <use href="#ic-wallet" />
+          </svg><span class="set-label">المحفظة المالية</span></div><svg
+          style="width:16px;height:16px;stroke:var(--sub2);fill:none;stroke-width:2">
+          <use href="#ic-arrowl" />
+        </svg>
+      </div>
+      <div class="set-row" onclick="toggleTheme()">
+        <div class="set-left"><svg id="theme-icon">
+            <use href="#ic-sun" />
+          </svg><span class="set-label">المظهر</span></div><span class="set-val" id="theme-lbl">فاتح</span>
+      </div>
+      <div class="set-row" id="set-profile" onclick="openProfile('me',4)">
+        <div class="set-left"><svg>
+            <use href="#ic-user" />
+          </svg><span class="set-label">ملفي الشخصي</span></div><svg
+          style="width:16px;height:16px;stroke:var(--sub2);fill:none;stroke-width:2">
+          <use href="#ic-arrowl" />
+        </svg>
+      </div>
+      <div class="set-row" id="set-lb" onclick="go('lb-view')">
+        <div class="set-left"><svg>
+            <use href="#ic-trophy" />
+          </svg><span class="set-label">لوحة المتصدرين</span></div><svg
+          style="width:16px;height:16px;stroke:var(--sub2);fill:none;stroke-width:2">
+          <use href="#ic-arrowl" />
+        </svg>
+      </div>
+      <div class="set-row" id="set-my-projects" style="display:none" onclick="showToast('صفحة إدارة المشاريع قريباً!')">
+        <div class="set-left"><svg>
+            <use href="#ic-clip" />
+          </svg><span class="set-label">مشاريعي المطروحة</span></div><svg
+          style="width:16px;height:16px;stroke:var(--sub2);fill:none;stroke-width:2">
+          <use href="#ic-arrowl" />
+        </svg>
+      </div>
+      <div class="set-row" onclick="showToast('إشعارات مخصصة قريباً!')">
+        <div class="set-left"><svg>
+            <use href="#ic-bell" />
+          </svg><span class="set-label">إشعارات النظام</span></div><span class="set-val">مفعّلة</span>
+      </div>
+      <div class="set-row" onclick="showToast('اللغة الإنجليزية قريباً!')">
+        <div class="set-left"><svg>
+            <use href="#ic-globe" />
+          </svg><span class="set-label">لغة التطبيق</span></div><span class="set-val">العربية</span>
+      </div>
+      <div class="set-row" onclick="showToast('مركز المساعدة قريباً!')">
+        <div class="set-left"><svg>
+            <use href="#ic-help" />
+          </svg><span class="set-label">مركز المساعدة</span></div><svg
+          style="width:16px;height:16px;stroke:var(--sub2);fill:none;stroke-width:2">
+          <use href="#ic-arrowl" />
+        </svg>
+      </div>
+      <div class="set-row" style="border-color:rgba(220,38,38,.2)" onclick="doLogout()">
+        <div class="set-left"><svg style="stroke:var(--red)">
+            <use href="#ic-logout" />
+          </svg><span class="set-label" style="color:var(--red)">تسجيل الخروج</span></div>
+      </div>
+      <div style="text-align:center;padding-top:12px;color:var(--sub2);font-size:12px;font-weight:700">نُول v3.1 • صنع
+        بـ ❤️ في المملكة العربية السعودية 🇸🇦</div>
+    </div>
+  </div>
+
+  <nav id="bnav" class="bnav"></nav>
+
+  <script>
+    // ===== RIPPLE =====
+    document.addEventListener('click', e => {
+      const host = e.target.closest('.ripple-host');
+      if (!host) return;
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const rect = host.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`;
+      host.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+    });
+
+    // ===== HELPERS =====
+    function icon(id, w = 20, h = 20, extra = '') {
+      return `<svg width="${w}" height="${h}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${extra}><use href="#ic-${id}"/></svg>`;
+    }
+    const CAT_ICONS = { design: 'palette', coding: 'code', ai: 'brain', cyber: 'shield', business: 'brief', lang: 'globe', media: 'film', math: 'calc', other: 'bulb' };
+    const MEDIA_ICONS = {
+      design: 'palette', coding: 'cpu', ai: 'brain', cyber: 'shield', business: 'brief', lang: 'globe', media: 'film', math: 'activity', other: 'mic',
+      ghusoon: 'calc', lama: 'layers', faisal: 'brief', sara: 'activity', yasser: 'anchor', raghad: 'clip', shahad: 'palette', khaled: 'box3d',
+      mona: 'mic', majed: 'shield', ziyad: 'brain', tariq: 'film', sami: 'calc', nouf: 'camera', saad: 'code', huda: 'mic',
+      omar: 'cpu', laila: 'globe', aisha: 'bulb', ibrahim: 'activity', khalid2: 'layers', dalal: 'pencil',
+      rawan: 'palette', nasser: 'code', dina: 'brain', badr: 'shield', reema: 'brief', sultan: 'film', hessa: 'calc', bandar: 'cpu'
+    };
+    function svgIcon(id, cls = '') {
+      return `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-${id}"/></svg>`;
+    }
+
+    // ===== DATABASE =====
+    const DB = {
+      me: { n: 'أحمد خالد', bg: 'linear-gradient(135deg,#c84b11,#f0a500)', i: 'أ', rank: 'ذهبي', ri: '🌟', cat: 'design', title: 'طالب معماري | Solarpunk Design', bio: 'شغوف بتصميم الفراغات وأشارك زملائي مهارات 3D Modeling وتصميم المساحات الإبداعية.', learn: 2, teach: 28, rating: 4.8, post: { icon: 'box3d', type: 'جلسة إرشادية', desc: 'جلسة تعليم أساسيات 3D Modeling وتصميم الفراغات للطلاب المعماريين باستخدام Rhino وBlender.' }, taught: [{ icon: 'box3d', n: '3D Modeling - Rhino', st: 15 }, { icon: 'layers', n: 'تصميم مساحات بـ Coohom', st: 13 }], learned: [{ icon: 'activity', n: 'تحليل بيانات Excel' }], reviews: [{ n: 'ياسر فهد', s: '⭐⭐⭐⭐⭐', t: 'أحمد مبدع جداً.' }, { n: 'غصون عطيه', s: '⭐⭐⭐⭐', t: 'شرح واضح وأسلوب ممتاز.' }] },
+      ghusoon: { n: 'غصون عطيه', bg: 'linear-gradient(135deg,#c026d3,#db2777)', i: 'غ', rank: 'فضي', ri: '🥈', cat: 'math', title: 'رياضيات | تفاضل وتكامل', bio: 'متخصصة في الرياضيات الجامعية.', learn: 6, teach: 18, rating: 4.6, post: { icon: 'calc', type: 'مراجعة أكاديمية', desc: 'مراجعة شاملة لأساسيات التفاضل والتكامل وتمارين تدريبية قبل الاختبارات.' }, taught: [{ icon: 'calc', n: 'تفاضل وتكامل 101', st: 12 }, { icon: 'activity', n: 'جبر خطي', st: 6 }], learned: [{ icon: 'code', n: 'أساسيات بايثون' }], reviews: [{ n: 'لمى سعد', s: '⭐⭐⭐⭐', t: 'شرحها واضح ومبسط.' }, { n: 'سعد العتيبي', s: '⭐⭐⭐⭐', t: 'فهمت Calculus من أساسه.' }] },
+      lama: { n: 'لمى سعد', bg: 'linear-gradient(135deg,#0d9488,#3b82f6)', i: 'ل', rank: 'ماسي', ri: '💎', cat: 'design', title: 'تصميم داخلي | Space Age & Solarpunk', bio: 'مصممة داخلية شغوفة بالأنماط المستقبلية.', learn: 5, teach: 55, rating: 4.9, post: { icon: 'layers', type: 'جلسة ساعتين', desc: 'جلسة فردية تتعلم فيها أحدث استايلات التصميم المستقبلي: Solarpunk و Space Age Interior.' }, taught: [{ icon: 'layers', n: 'Solarpunk Design', st: 30 }, { icon: 'palette', n: 'Space Age Interiors', st: 25 }], learned: [{ icon: 'palette', n: 'Color Theory Advanced' }], reviews: [{ n: 'نوف العبدالله', s: '⭐⭐⭐⭐⭐', t: 'أفضل مدربة التقيت بها.' }, { n: 'أحمد خالد', s: '⭐⭐⭐⭐⭐', t: 'ما توقعت أتعلم كل هذا في جلستين!' }] },
+      faisal: { n: 'فيصل خالد', bg: 'linear-gradient(135deg,#d97706,#dc2626)', i: 'ف', rank: 'ذهبي', ri: '🌟', cat: 'business', title: 'إدارة أعمال | ريادة وأعمال عن بُعد', bio: 'متخصص في التنظيم الإداري والعمل الرقمي.', learn: 4, teach: 40, rating: 4.7, post: { icon: 'brief', type: 'ورشة تدريبية', desc: 'ورشة شاملة لمهارات الإدارة والعمل عن بُعد: Notion, Trello, Google Workspace.' }, taught: [{ icon: 'brief', n: 'إدارة الملفات السحابية', st: 25 }, { icon: 'anchor', n: 'العمل الإداري عن بُعد', st: 15 }], learned: [{ icon: 'globe', n: 'كتابة إيميلات رسمية' }], reviews: [{ n: 'رغد صالح', s: '⭐⭐⭐⭐⭐', t: 'نظّم لي طريقة عملي بالكامل.' }, { n: 'منى اليوسف', s: '⭐⭐⭐⭐', t: 'ورشة ممتازة ومفيدة جداً.' }] },
+      sara: { n: 'سارة أحمد', bg: 'linear-gradient(135deg,#6366f1,#8b5cf6)', i: 'س', rank: 'ماسي', ri: '💎', cat: 'coding', title: 'محللة بيانات | Excel & Python & Power BI', bio: 'متخصصة في تحليل البيانات والذكاء التجاري.', learn: 10, teach: 120, rating: 5.0, post: { icon: 'activity', type: 'معسكر مكثف', desc: 'معسكر تحليل البيانات الكامل: Excel احترافي، Python للبيانات، Power BI.' }, taught: [{ icon: 'activity', n: 'Excel للمحترفين', st: 70 }, { icon: 'code', n: 'Python & Data Analysis', st: 35 }, { icon: 'cpu', n: 'Power BI Dashboard', st: 15 }], learned: [{ icon: 'brain', n: 'Machine Learning Basics' }], reviews: [{ n: 'أحمد خالد', s: '⭐⭐⭐⭐⭐', t: 'دورة الإكسل خرافية!' }, { n: 'ياسر فهد', s: '⭐⭐⭐⭐⭐', t: 'أفضل دورة Python اتعلمتها.' }] },
+      yasser: { n: 'ياسر فهد', bg: 'linear-gradient(135deg,#2563eb,#06b6d4)', i: 'ي', rank: 'ذهبي', ri: '🌟', cat: 'design', title: 'هندسة مدنية | AutoCAD & Revit', bio: 'مهندس مدني يجمع بين الرسم الهندسي والبرمجة.', learn: 6, teach: 30, rating: 4.6, post: { icon: 'anchor', type: 'ورشة تدريبية', desc: 'أساسيات AutoCAD للطلاب الجدد من الواجهة لأول رسم هندسي كامل.' }, taught: [{ icon: 'anchor', n: 'AutoCAD للمبتدئين', st: 20 }, { icon: 'box3d', n: 'Revit Architecture', st: 10 }], learned: [{ icon: 'brain', n: 'AI في الهندسة' }], reviews: [{ n: 'سعد العتيبي', s: '⭐⭐⭐⭐', t: 'شرح عملي وسريع.' }, { n: 'خالد الدوسري', s: '⭐⭐⭐⭐', t: 'أفضل شخص يشرح AutoCAD.' }] },
+      raghad: { n: 'رغد صالح', bg: 'linear-gradient(135deg,#ec4899,#f43f5e)', i: 'ر', rank: 'ذهبي', ri: '🌟', cat: 'other', title: 'موارد بشرية | تطوير وظيفي وCV', bio: 'أساعدك تبني مسارك المهني من الصفر.', learn: 8, teach: 60, rating: 4.8, post: { icon: 'clip', type: 'استشارة مهنية', desc: 'جلسة مراجعة شاملة لـ CV وLinkedIn وتجهيزك للمقابلات في الشركات الكبرى.' }, taught: [{ icon: 'clip', n: 'كتابة CV احترافي', st: 40 }, { icon: 'mic', n: 'تجاوز مقابلات العمل', st: 20 }], learned: [{ icon: 'activity', n: 'تحليل بيانات HR' }], reviews: [{ n: 'منى اليوسف', s: '⭐⭐⭐⭐⭐', t: 'انقبلت في تدريب تعاوني بفضل رغد!' }, { n: 'سامي عبدالرحمن', s: '⭐⭐⭐⭐⭐', t: 'حسّنت CV بطريقة ما توقعتها.' }] },
+      shahad: { n: 'شهد محمد', bg: 'linear-gradient(135deg,#10b981,#059669)', i: 'ش', rank: 'ذهبي', ri: '🌟', cat: 'design', title: 'مصممة واجهات | UI/UX & Figma & Framer', bio: 'متخصصة في تجربة المستخدم وبناء واجهات تطبيقات.', learn: 5, teach: 45, rating: 4.9, post: { icon: 'palette', type: 'جلسة إرشادية', desc: 'تصميم واجهات تطبيقات موبايل باستخدام Figma من المبادئ لأول Prototype.' }, taught: [{ icon: 'palette', n: 'UI/UX مع Figma', st: 30 }, { icon: 'layers', n: 'تصميم تطبيقات موبايل', st: 15 }], learned: [{ icon: 'cpu', n: 'Framer Web Design' }], reviews: [{ n: 'لمى سعد', s: '⭐⭐⭐⭐⭐', t: 'شهد استثنائية في الشرح.' }, { n: 'فيصل خالد', s: '⭐⭐⭐⭐⭐', t: 'بنيت أول App Design بعد جلسة!' }] },
+      khaled: { n: 'خالد الدوسري', bg: 'linear-gradient(135deg,#e11d48,#be123c)', i: 'خ', rank: 'فضي', ri: '🥈', cat: 'math', title: 'هندسة مدنية | ميكانيكا واستاتيكا', bio: 'متخصص في مواد الهندسة المدنية.', learn: 10, teach: 15, rating: 4.4, post: { icon: 'box3d', type: 'مراجعة أكاديمية', desc: 'مراجعة مكثفة لمادة الاستاتيكا وميكانيكا المواد قبل الاختبارات.' }, taught: [{ icon: 'box3d', n: 'مراجعة استاتيكا', st: 15 }], learned: [{ icon: 'anchor', n: 'AutoCAD مستوى متقدم' }], reviews: [{ n: 'ياسر فهد', s: '⭐⭐⭐⭐', t: 'ساعدني كثيراً قبل الاختبار.' }] },
+      mona: { n: 'منى اليوسف', bg: 'linear-gradient(135deg,#7c3aed,#6d28d9)', i: 'م', rank: 'ذهبي', ri: '🌟', cat: 'lang', title: 'لغات | إنجليزي للأعمال & IELTS', bio: 'معلمة لغة إنجليزية متخصصة في المحادثة والكتابة الأكاديمية.', learn: 15, teach: 35, rating: 4.7, post: { icon: 'mic', type: 'جلسة إرشادية', desc: 'جلسات محادثة إنجليزي للأعمال وتقوية المهارات الشفهية.' }, taught: [{ icon: 'mic', n: 'محادثة إنجليزي Business', st: 20 }, { icon: 'pencil', n: 'IELTS Preparation', st: 15 }], learned: [{ icon: 'globe', n: 'لغة فرنسية - مستوى A2' }], reviews: [{ n: 'هدى محمد', s: '⭐⭐⭐⭐⭐', t: 'أسلوبها ممتع وتفاعلي.' }, { n: 'رغد صالح', s: '⭐⭐⭐⭐', t: 'تحسّن مستواي بالإنجليزي.' }] },
+      majed: { n: 'ماجد فهد', bg: 'linear-gradient(135deg,#047857,#065f46)', i: 'م', rank: 'ماسي', ri: '💎', cat: 'cyber', title: 'أمن سيبراني | Ethical Hacking & CCNA', bio: 'متخصص في أمن المعلومات والشبكات.', learn: 20, teach: 90, rating: 4.9, post: { icon: 'shield', type: 'معسكر تدريبي', desc: 'معسكر الأمن السيبراني: CCNA، Ethical Hacking، وLinux Security من الصفر.' }, taught: [{ icon: 'shield', n: 'Ethical Hacking', st: 50 }, { icon: 'cpu', n: 'CCNA Networking', st: 40 }], learned: [{ icon: 'layers', n: 'Cloud Security AWS' }], reviews: [{ n: 'سعد العتيبي', s: '⭐⭐⭐⭐⭐', t: 'معلومات دسمة ومفيدة جداً.' }, { n: 'زياد طارق', s: '⭐⭐⭐⭐⭐', t: 'ماجد فتح لي باب Cybersecurity!' }] },
+      ziyad: { n: 'زياد طارق', bg: 'linear-gradient(135deg,#4338ca,#1e1b4b)', i: 'ز', rank: 'ذهبي', ri: '🌟', cat: 'ai', title: 'ذكاء اصطناعي | Prompt Engineering & LLMs', bio: 'مهتم بالذكاء الاصطناعي وهندسة الأوامر.', learn: 15, teach: 65, rating: 4.8, post: { icon: 'brain', type: 'ورشة تدريبية', desc: 'ورشة شاملة: Prompt Engineering المتقدم، LangChain، وبناء AI Agents.' }, taught: [{ icon: 'brain', n: 'Prompt Engineering Pro', st: 40 }, { icon: 'cpu', n: 'LangChain & AI Agents', st: 25 }], learned: [{ icon: 'code', n: 'Python للـ ML' }], reviews: [{ n: 'فيصل خالد', s: '⭐⭐⭐⭐⭐', t: 'اختصر علي وقت طويل في AI.' }, { n: 'سارة أحمد', s: '⭐⭐⭐⭐⭐', t: 'زياد فاهم AI من جذوره.' }] },
+      tariq: { n: 'طارق زياد', bg: 'linear-gradient(135deg,#0369a1,#1e3a8a)', i: 'ط', rank: 'ذهبي', ri: '🌟', cat: 'media', title: 'مونتاج سينمائي | Premiere & After Effects', bio: 'مونتير محترف. أعلمك إنتاج فيديوهات احترافية.', learn: 5, teach: 45, rating: 4.7, post: { icon: 'film', type: 'ورشة تدريبية', desc: 'تعلم Premiere Pro وAfter Effects من الصفر: قص، تأثيرات، وإنتاج محتوى.' }, taught: [{ icon: 'film', n: 'Adobe Premiere Pro', st: 30 }, { icon: 'layers', n: 'After Effects Motion', st: 15 }], learned: [{ icon: 'camera', n: 'تصوير احترافي - Sony' }], reviews: [{ n: 'أحمد خالد', s: '⭐⭐⭐⭐', t: 'أول فيديو محترف بعد ٣ جلسات.' }, { n: 'شهد محمد', s: '⭐⭐⭐⭐⭐', t: 'طارق يشرح AE بأسلوب فريد.' }] },
+      sami: { n: 'سامي عبدالرحمن', bg: 'linear-gradient(135deg,#15803d,#064e3b)', i: 'س', rank: 'ماسي', ri: '💎', cat: 'math', title: 'رياضيات وفيزياء | Calculus & Engineering Physics', bio: 'الأول في رياضيات الجامعة لمدة ٤ سنوات.', learn: 3, teach: 150, rating: 5.0, post: { icon: 'calc', type: 'مراجعة أكاديمية', desc: 'مراجعة Calculus 1 و 2 وفيزياء هندسية بأسلوب إبداعي.' }, taught: [{ icon: 'calc', n: 'مراجعة Calculus 1', st: 90 }, { icon: 'activity', n: 'مراجعة Calculus 2', st: 60 }], learned: [{ icon: 'cpu', n: 'برمجة MATLAB' }], reviews: [{ n: 'ماجد فهد', s: '⭐⭐⭐⭐⭐', t: 'أنقذني في الميدتيرم!' }, { n: 'سارة أحمد', s: '⭐⭐⭐⭐⭐', t: 'سامي موهوب بالتدريس.' }] },
+      nouf: { n: 'نوف العبدالله', bg: 'linear-gradient(135deg,#be185d,#9d174d)', i: 'ن', rank: 'ذهبي', ri: '🌟', cat: 'media', title: 'تصوير إبداعي | Photography & Lightroom', bio: 'مصورة احترافية. أعلمك أسرار الإضاءة والتعديل.', learn: 7, teach: 38, rating: 4.8, post: { icon: 'camera', type: 'ورشة ميدانية', desc: 'ورشة تصوير ميدانية داخل الحرم: الإعدادات الاحترافية والإضاءة الطبيعية.' }, taught: [{ icon: 'camera', n: 'Photography Basics', st: 25 }, { icon: 'layers', n: 'Lightroom Pro Editing', st: 13 }], learned: [{ icon: 'film', n: 'فيديو سينمائي' }], reviews: [{ n: 'طارق زياد', s: '⭐⭐⭐⭐⭐', t: 'شرح لا يُنسى.' }, { n: 'شهد محمد', s: '⭐⭐⭐⭐⭐', t: 'تعلمت Lightroom في جلسة واحدة!' }] },
+      saad: { n: 'سعد العتيبي', bg: 'linear-gradient(135deg,#0369a1,#0284c7)', i: 'س', rank: 'ذهبي', ri: '🌟', cat: 'coding', title: 'تطوير ويب | React & Node.js & TypeScript', bio: 'مطور Full Stack. أعلمك بناء تطبيقات ويب حديثة.', learn: 12, teach: 55, rating: 4.8, post: { icon: 'code', type: 'كورس مكثف', desc: 'كورس Full Stack: React, Node.js, PostgreSQL, وDeploy على Vercel.' }, taught: [{ icon: 'code', n: 'React Modern Development', st: 35 }, { icon: 'cpu', n: 'Node.js & Express API', st: 20 }], learned: [{ icon: 'layers', n: 'AWS & Cloud Deployment' }], reviews: [{ n: 'ماجد فهد', s: '⭐⭐⭐⭐⭐', t: 'طريقة شرحه للـ React ما شفتها عند أحد.' }, { n: 'زياد طارق', s: '⭐⭐⭐⭐', t: 'كورس Node منظم جداً.' }] },
+      huda: { n: 'هدى محمد', bg: 'linear-gradient(135deg,#b45309,#d97706)', i: 'هـ', rank: 'ذهبي', ri: '🌟', cat: 'other', title: 'قيادة وتواصل | Public Speaking & Leadership', bio: 'مدربة معتمدة. ساعدت ٦٠+ شخص يتكلمون بثقة.', learn: 9, teach: 62, rating: 4.9, post: { icon: 'mic', type: 'جلسة تدريبية', desc: 'جلسة تدريبية على Public Speaking وفن الإلقاء.' }, taught: [{ icon: 'mic', n: 'Public Speaking', st: 42 }, { icon: 'anchor', n: 'مهارات التفاوض', st: 20 }], learned: [{ icon: 'pencil', n: 'كتابة إبداعية' }], reviews: [{ n: 'رغد صالح', s: '⭐⭐⭐⭐⭐', t: 'هدى غيّرت تعاملي مع الجمهور.' }, { n: 'منى اليوسف', s: '⭐⭐⭐⭐⭐', t: 'مليئة بالتقنيات العملية.' }] },
+      omar: { n: 'عمر البلوي', bg: 'linear-gradient(135deg,#7c3aed,#a855f7)', i: 'ع', rank: 'ماسي', ri: '💎', cat: 'coding', title: 'تطوير موبايل | Flutter & Dart & Firebase', bio: 'مطور تطبيقات موبايل. بنيت ٥+ تطبيقات حقيقية.', learn: 8, teach: 78, rating: 4.9, post: { icon: 'cpu', type: 'كورس كامل', desc: 'كورس Flutter الكامل: UI, State Management, Firebase, وإصدار التطبيق.' }, taught: [{ icon: 'cpu', n: 'Flutter UI Development', st: 50 }, { icon: 'layers', n: 'Firebase & Backend', st: 28 }], learned: [{ icon: 'brain', n: 'ML Kit في Flutter' }], reviews: [{ n: 'سعد العتيبي', s: '⭐⭐⭐⭐⭐', t: 'يبني معك تطبيق حقيقي من أول يوم.' }, { n: 'شهد محمد', s: '⭐⭐⭐⭐⭐', t: 'أفضل من كورسات يوتيوب!' }] },
+      laila: { n: 'ليلى الشمري', bg: 'linear-gradient(135deg,#0891b2,#0e7490)', i: 'ل', rank: 'ذهبي', ri: '🌟', cat: 'lang', title: 'لغة فرنسية | من المبتدئين للـ B2', bio: 'خريجة ترجمة فرنسية - عربية.', learn: 11, teach: 33, rating: 4.6, post: { icon: 'globe', type: 'جلسة تعلّم', desc: 'دروس فرنسية مخصصة A1 إلى B2 مع التركيز على المحادثة.' }, taught: [{ icon: 'globe', n: 'French A1 - A2', st: 22 }, { icon: 'pencil', n: 'French Grammar B1', st: 11 }], learned: [{ icon: 'mic', n: 'ألمانية - مستوى A1' }], reviews: [{ n: 'منى اليوسف', s: '⭐⭐⭐⭐', t: 'أسلوبها ممتع.' }, { n: 'نوف العبدالله', s: '⭐⭐⭐⭐⭐', t: 'تعلمت الفرنسية في شهر!' }] },
+      aisha: { n: 'عائشة القحطاني', bg: 'linear-gradient(135deg,#16a34a,#4ade80)', i: 'ع', rank: 'ذهبي', ri: '🌟', cat: 'business', title: 'تسويق رقمي | Social Media & Content Strategy', bio: 'متخصصة في التسويق الرقمي.', learn: 6, teach: 48, rating: 4.8, post: { icon: 'bulb', type: 'ورشة تسويق', desc: 'ورشة التسويق الرقمي: Content Strategy, SEO, Instagram Growth.' }, taught: [{ icon: 'bulb', n: 'Social Media Marketing', st: 30 }, { icon: 'pencil', n: 'Content Strategy & Copywriting', st: 18 }], learned: [{ icon: 'activity', n: 'Google Analytics' }], reviews: [{ n: 'فيصل خالد', s: '⭐⭐⭐⭐⭐', t: 'غيّرت استراتيجية التسويق!' }, { n: 'هدى محمد', s: '⭐⭐⭐⭐', t: 'مليئة بالأمثلة الواقعية.' }] },
+      khalid2: { n: 'خالد العنزي', bg: 'linear-gradient(135deg,#1e40af,#1e3a8a)', i: 'خ', rank: 'ماسي', ri: '💎', cat: 'coding', title: 'DevOps & Cloud | AWS & Docker & Kubernetes', bio: 'متخصص في البنية التحتية السحابية.', learn: 5, teach: 82, rating: 4.9, post: { icon: 'layers', type: 'معسكر DevOps', desc: 'معسكر DevOps الكامل: Linux, Docker, Kubernetes, CI/CD, وAWS.' }, taught: [{ icon: 'layers', n: 'AWS Cloud Practitioner', st: 45 }, { icon: 'cpu', n: 'Docker & Kubernetes', st: 37 }], learned: [{ icon: 'shield', n: 'Cloud Security' }], reviews: [{ n: 'سعد العتيبي', s: '⭐⭐⭐⭐⭐', t: 'يشرح Kubernetes بطريقة مبسطة!' }, { n: 'عمر البلوي', s: '⭐⭐⭐⭐⭐', t: 'معسكر AWS غيّر مساري المهني.' }] },
+      bandar: { n: 'بندر العسيري', bg: 'linear-gradient(135deg,#1d4ed8,#1e40af)', i: 'ب', rank: 'ماسي', ri: '💎', cat: 'coding', title: 'تطوير ألعاب | Unity & C# & Godot', bio: 'مطور ألعاب متخصص في Unity وGodot.', learn: 8, teach: 73, rating: 4.9, post: { icon: 'cpu', type: 'كورس ألعاب', desc: 'كورس Unity الكامل: 2D Games, 3D Games, Physics, شبكات اللاعبين.' }, taught: [{ icon: 'cpu', n: 'Unity 2D Game Development', st: 48 }, { icon: 'layers', n: 'Unity 3D & Shaders', st: 25 }], learned: [{ icon: 'code', n: 'Godot & GDScript' }], reviews: [{ n: 'عمر البلوي', s: '⭐⭐⭐⭐⭐', t: 'بندر علّمني أصنع لعبة من الصفر.' }, { n: 'ناصر العمري', s: '⭐⭐⭐⭐⭐', t: 'أفضل كورس Unity عربي!' }] },
+    };
+    const USERS = Object.keys(DB);
+
+    let COMPANY_PROJECTS = [
+      { id: 1, comp: 'شركة التقنية الحديثة', icon: 'building', cat: 'design', title: 'تصميم واجهة تطبيق توصيل طلبات', budget: '١٥٠٠', time: 'أسبوعين', desc: 'مصمم UI/UX لبناء شاشات تطبيق توصيل باستخدام Figma. ١٢ شاشة كاملة مع Design System.' },
+      { id: 2, comp: 'مؤسسة الأفق للتجارة', icon: 'brief', cat: 'coding', title: 'تحليل بيانات مبيعات - Power BI', budget: '٨٠٠', time: 'أسبوع', desc: 'نحتاج Excel وPower BI لتنظيف وتحليل بيانات مبيعات ٣ سنوات واستخراج Dashboard تفاعلي.' },
+      { id: 3, comp: 'ستارت أب بايتكس', icon: 'code', cat: 'coding', title: 'تطوير Landing Page بـ React & Next.js', budget: '١٢٠٠', time: 'أسبوع', desc: 'مطلوب مطور Front-End لبناء صفحة هبوط احترافية بـ Next.js مع animations وSEO.' },
+      { id: 4, comp: 'أكاديمية نماء التعليمية', icon: 'layers', cat: 'media', title: 'إنتاج ٥ فيديوهات تعليمية قصيرة', budget: '٢٠٠٠', time: 'أسبوعين', desc: 'فيديوهات تعليمية ٣-٥ دقائق مع animations وMotion Graphics.' },
+      { id: 5, comp: 'شركة سبا للاستشارات', icon: 'brief', cat: 'business', title: 'إدارة السوشال ميديا لشهر', budget: '٩٠٠', time: 'شهر', desc: 'إدارة Instagram وLinkedIn مع إنتاج محتوى أسبوعي احترافي.' },
+    ];
+
+    // ===== STATE =====
+    let navHist = ['login-view'], curChat = '', currentAssignee = '', userType = 'student', feedMode = 'talents', isDark = false;
+
+    // ===== THEME =====
+    function applyTheme() {
+      document.documentElement.classList.toggle('dark', isDark);
+      document.getElementById('theme-lbl').textContent = isDark ? 'فاتح' : 'داكن';
+      const ti = document.getElementById('theme-icon');
+      if (ti) ti.innerHTML = `<use href="#ic-${isDark ? 'sun' : 'moon'}"/>`;
+    }
+    applyTheme();
+
+    // ===== SCROLL REVEAL =====
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -20px 0px' });
+
+    function initScrollReveal() {
+      document.querySelectorAll('.post,.offer-item,.skill-item,.svc-card,.rev-card,.set-row,.lb-item,.dm-item,.proj-card').forEach((el, i) => {
+        if (!el.classList.contains('scroll-reveal')) {
+          el.classList.add('scroll-reveal');
+          el.style.transitionDelay = `${(i % 5) * .06}s`;
+          revealObserver.observe(el);
+        }
+      });
+    }
+
+    // ===== LOGIN =====
+    let regType = 'student';
+    function switchLogin(t) {
+      userType = t;
+      ['student', 'company'].forEach(type => {
+        document.getElementById('tab-' + type).classList.toggle('active', t === type);
+        document.getElementById('login-' + type + '-form').style.display = t === type ? 'block' : 'none';
+      });
+    }
+    function switchRegType(t) {
+      regType = t;
+      ['student', 'company'].forEach(type => {
+        document.getElementById('reg-tab-' + type).classList.toggle('active', t === type);
+      });
+      document.getElementById('reg-student-form').style.display = t === 'student' ? 'block' : 'none';
+      document.getElementById('reg-company-form').style.display = t === 'company' ? 'block' : 'none';
+    }
+    function showPanel(panel) {
+      document.getElementById('login-panel').classList.toggle('active', panel === 'login');
+      document.getElementById('register-panel').classList.toggle('active', panel === 'register');
+    }
+    function goToRegister() {
+      go('login-view', -1);
+      setTimeout(() => showPanel('register'), 300);
+    }
+
+    let isGuest = false;
+    let currentUserData = null;
+
+    async function doLogin() {
+      const email = userType === 'student' ? document.getElementById('login-email').value : document.getElementById('login-comp-email').value;
+      const password = document.getElementById('login-password').value;
+      if (!email || !password) { showToast('أدخل الإيميل وكلمة المرور', '#dc2626'); return; }
+      try {
+        const res = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.error || 'خطأ في الدخول', '#dc2626'); return; }
+        isGuest = false;
+        userType = data.type;
+        await loadCurrentUser();
+        enterApp();
+        showToast('أهلاً بعودتك! 🎉', '#10b981');
+      } catch (e) { showToast('خطأ في الاتصال بالسيرفر', '#dc2626'); }
+    }
+
+    async function doRegister() {
+      const isStudent = regType === 'student';
+      const name = isStudent ? document.getElementById('reg-name').value : document.getElementById('reg-comp-name').value;
+      const email = isStudent ? document.getElementById('reg-email').value : document.getElementById('reg-comp-email').value;
+      const password = document.getElementById('reg-password').value;
+      const password2 = document.getElementById('reg-password2').value;
+      if (!name || !email || !password) { showToast('جميع الحقول مطلوبة', '#dc2626'); return; }
+      if (password !== password2) { showToast('كلمة المرور غير متطابقة', '#dc2626'); return; }
+      if (password.length < 6) { showToast('كلمة المرور يجب ٦ أحرف على الأقل', '#dc2626'); return; }
+      const body = { name, email, password, type: regType };
+      if (isStudent) body.university = document.getElementById('reg-univ').value;
+      else {
+        body.company_name = name;
+        body.commercial_reg = document.getElementById('reg-comp-reg').value;
+        body.sector = document.getElementById('reg-sector').value;
+      }
+      try {
+        const res = await fetch('/api/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.error || 'خطأ في التسجيل', '#dc2626'); return; }
+        isGuest = false;
+        userType = data.type;
+        await loadCurrentUser();
+        enterApp();
+        showToast('مرحباً بك في نُول! 🎉', '#10b981');
+      } catch (e) { showToast('خطأ في الاتصال بالسيرفر', '#dc2626'); }
+    }
+
+    async function doGuestLogin() {
+      try {
+        const res = await fetch('/api/guest', { method: 'POST' });
+        const data = await res.json();
+        isGuest = true;
+        userType = 'student';
+        currentUserData = { uid: 'guest', name: 'ضيف', bg: 'linear-gradient(135deg,#94a3b8,#64748b)', icon_letter: 'ض', media_icon: 'user', rank_name: 'ضيف', rank_icon: '👤', cat: 'other', title: 'زائر', bio: 'أنت تتصفح كضيف', learn_count: 0, teach_count: 0, rating: 0, balance: 0 };
+        enterApp();
+        showToast('مرحباً! أنت تتصفح كضيف 👋');
+      } catch (e) { showToast('خطأ في الاتصال', '#dc2626'); }
+    }
+
+    function checkGuestPermission(action) {
+      if (!isGuest) return true;
+      showToast('سجّل حساب لـ' + action, '#f0a500');
+      return false;
+    }
+
+    async function loadCurrentUser() {
+      try {
+        const res = await fetch('/api/me');
+        const data = await res.json();
+        if (data.loggedIn && !data.isGuest) { currentUserData = data.user; userType = data.type; isGuest = false; }
+        else if (data.isGuest) { isGuest = true; }
+      } catch (e) { console.error('Failed to load user'); }
+    }
+
+    function enterApp() {
+      document.getElementById('guest-banner').style.display = isGuest ? 'flex' : 'none';
+      updateNav(); updateSettingsUI();
+      if (userType === 'student') {
+        switchFeed('talents'); buildAllUsers(); buildDMs(); buildLB(); buildWallet();
+        go('feed-view', 0);
+      } else {
+        buildCompMatches('all', 'comp-matches-list'); buildWallet();
+        go('comp-dash-view', 0);
+      }
+    }
+
+    function login() { doLogin(); }
+
+    function updateSettingsUI() {
+      const isSt = userType === 'student';
+      document.getElementById('set-profile').style.display = isSt ? 'flex' : 'none';
+      document.getElementById('set-lb').style.display = isSt ? 'flex' : 'none';
+      document.getElementById('set-my-projects').style.display = !isSt ? 'flex' : 'none';
+    }
+
+    function updateNav() {
+      const bnav = document.getElementById('bnav');
+      if (userType === 'student') {
+        bnav.innerHTML = `<button class="nb active" onclick="go('feed-view',0)">${svgIcon('home')}</button><button class="nb" onclick="go('search-view',1)">${svgIcon('search')}</button><button class="nb nb-add" onclick="go('add-view',2)">${svgIcon('plus')}</button><button class="nb" onclick="go('dm-view',3)">${svgIcon('msg')}</button><button class="nb" onclick="openProfile('me',4)">${svgIcon('user')}</button>`;
+      } else {
+        bnav.innerHTML = `<button class="nb active" onclick="go('comp-dash-view',0)">${svgIcon('building')}</button><button class="nb" onclick="go('comp-search-view',1)">${svgIcon('search')}</button><button class="nb nb-add" onclick="go('comp-post-view',2)">${svgIcon('plus')}</button><button class="nb" onclick="go('dm-view',3)">${svgIcon('msg')}</button><button class="nb" onclick="go('settings-view',4)">${svgIcon('settings')}</button>`;
+      }
+    }
+
+    // ===== AVATAR =====
+    function renderAv(uid, w = 52, h = 52) {
+      const u = DB[uid];
+      return `<div class="av" style="background:${u.bg};width:${w}px;height:${h}px;flex-shrink:0" onclick="openProfile('${uid}')"><div class="av-svg"><svg width="${Math.round(w * .52)}" height="${Math.round(h * .52)}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-${MEDIA_ICONS[uid] || 'user'}"/></svg></div></div>`;
+    }
+    function renderAvEl(el, uid, w = 52, h = 52) {
+      const u = DB[uid];
+      el.style.background = u.bg; el.style.width = w + 'px'; el.style.height = h + 'px';
+      el.innerHTML = `<div class="av-svg"><svg width="${Math.round(w * .5)}" height="${Math.round(h * .5)}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-${MEDIA_ICONS[uid] || 'user'}"/></svg></div>`;
+    }
+
+    // ===== FEED =====
+    function switchFeed(mode) {
+      feedMode = mode;
+      document.getElementById('tab-st-talents').classList.toggle('active', mode === 'talents');
+      document.getElementById('tab-st-projects').classList.toggle('active', mode === 'projects');
+      const fc = document.getElementById('feed-cats');
+      const sb = document.getElementById('feed-sort-bar');
+      if (mode === 'talents') { fc.style.display = 'flex'; sb.style.display = 'flex'; buildFeed(); }
+      else { fc.style.display = 'none'; sb.style.display = 'none'; buildProjectsFeed(); }
+    }
+
+    function buildFeed() {
+      const fc = document.getElementById('feed-container');
+      const sort = document.getElementById('sort-sel')?.value || 'new';
+      const cat = document.querySelector('#feed-cats .cat.active')?.dataset.val || 'all';
+      if (!fc) return;
+      fc.innerHTML = '';
+      let arr = USERS.filter(id => id !== 'me' && DB[id].post);
+      if (cat !== 'all') arr = arr.filter(id => DB[id].cat === cat);
+      if (sort === 'trainees') arr.sort((a, b) => DB[b].teach - DB[a].teach);
+      else if (sort === 'rank') { const rv = { 'ماسي': 3, 'ذهبي': 2, 'فضي': 1 }; arr.sort((a, b) => (rv[DB[b].rank] || 0) - (rv[DB[a].rank] || 0)); }
+      else if (sort === 'rating') arr.sort((a, b) => (DB[b].rating || 0) - (DB[a].rating || 0));
+      if (!arr.length) { fc.innerHTML = `<div style="text-align:center;color:var(--sub2);padding:50px;font-weight:700">لا توجد خدمات في هذا التصنيف</div>`; return; }
+      arr.forEach((uid, idx) => {
+        const u = DB[uid]; const p = u.post;
+        const badge = u.rank === 'ماسي' ? `<span class="badge badge-diamond">💎 ماسي</span>` : u.rank === 'ذهبي' ? `<span class="badge badge-gold">🌟 ذهبي</span>` : `<span class="badge badge-silver">🥈 فضي</span>`;
+        const el = document.createElement('div');
+        el.className = 'post';
+        el.style.animationDelay = `${idx * .07}s`;
+        el.innerHTML = `
+      <div class="ph">
+        ${renderAv(uid, 52, 52)}
+        <div class="ph-info" onclick="openProfile('${uid}')">
+          <h3>${u.n} ${badge} ${u.teach > 50 ? `<div class="v-check"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><use href="#ic-check"/></svg></div>` : ''}</h3>
+          <p>${u.title.split('|')[0].trim()} • <span style="color:var(--gold)">${u.rating}★</span> (${u.reviews.length} تقييم)</p>
+        </div>
+      </div>
+      <div class="post-media" style="background:${u.bg}">
+        <div class="post-media-inner"><svg width="76" height="76" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-${p.icon || 'star'}"/></svg></div>
+        <div class="post-media-shine"></div>
+        <div class="post-media-shimmer"></div>
+        <div class="cm">
+          <div class="pill"><svg width="11" height="11" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><use href="#ic-clock"/></svg>${p.type}</div>
+          <div class="pill"><svg width="11" height="11" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><use href="#ic-users"/></svg>${u.teach} متدرب</div>
+        </div>
+      </div>
+      <div class="post-body">
+        <p>${p.desc}</p>
+        ${u.taught.length ? `<div class="tags">${u.taught.map(t => `<span class="tag">${t.n}</span>`).join('')}</div>` : ''}
+      </div>
+      <div class="post-acts">
+        <button class="pa btn-o ripple-host" onclick="openChat('${uid}')">تواصل</button>
+        <button class="pa btn-p ripple-host" onclick="openRequestModal('${uid}')">طلب تعلّم</button>
+      </div>`;
+        fc.appendChild(el);
+      });
+      setTimeout(initScrollReveal, 100);
+    }
+
+    function buildProjectsFeed() {
+      const fc = document.getElementById('feed-container');
+      fc.innerHTML = '';
+      if (!COMPANY_PROJECTS.length) { fc.innerHTML = `<div style="text-align:center;color:var(--sub2);padding:50px;font-weight:700">لا توجد مشاريع حالياً</div>`; return; }
+      COMPANY_PROJECTS.forEach((p, idx) => {
+        const el = document.createElement('div');
+        el.className = 'proj-card';
+        el.style.animationDelay = `${idx * .08}s`;
+        el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <div style="width:44px;height:44px;border-radius:14px;background:var(--accentG);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(200,75,17,.28);flex-shrink:0">
+          <svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><use href="#ic-${p.icon || 'building'}"/></svg>
+        </div>
+        <div>
+          <div style="font-size:16px;font-weight:900">${p.title}</div>
+          <div style="font-size:12px;color:var(--sub2);font-weight:700;margin-top:2px">${p.comp}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="proj-badge"><svg><use href="#ic-dollar"/></svg>${p.budget} ر.س</span>
+        <span class="proj-badge"><svg><use href="#ic-clock"/></svg>${p.time}</span>
+        <span class="proj-badge"><svg><use href="#ic-${CAT_ICONS[p.cat] || 'star'}"/></svg>${catLabel(p.cat)}</span>
+      </div>
+      <div style="font-size:13px;line-height:1.75;color:var(--sub);font-weight:500">${p.desc}</div>
+      <button class="btn btn-p ripple-host" style="margin-top:4px;border-radius:16px" onclick="showToast('تم التقديم! سيتم مراجعة ملفك خلال ٢٤ ساعة.','#10b981')">تقديم على المشروع</button>`;
+        fc.appendChild(el);
+      });
+      setTimeout(initScrollReveal, 100);
+    }
+
+    function catLabel(c) {
+      return { coding: 'برمجة', design: 'تصميم', business: 'أعمال', media: 'محتوى', ai: 'ذكاء اصطناعي', cyber: 'أمن سيبراني', math: 'علوم', lang: 'لغات', other: 'تطوير شخصي' }[c] || 'أخرى';
+    }
+
+    // ===== REQUEST MODAL =====
+    function openRequestModal(uid) {
+      if (!checkGuestPermission('طلب التعلّم')) return;
+      if (!DB[uid]) return;
+      document.getElementById('rm-name').textContent = DB[uid].n;
+      document.getElementById('request-modal').classList.add('active');
+    }
+    function closeRequestModal(e) {
+      if (e && e.target.id !== 'request-modal' && !e.target.classList.contains('modal-close')) return;
+      document.getElementById('request-modal').classList.remove('active');
+    }
+    function confirmRequest() {
+      document.getElementById('request-modal').classList.remove('active');
+      showToast('تم إرسال الطلب بنجاح! سيتم التواصل معك قريباً.', '#10b981');
+    }
+
+    // ===== SEARCH =====
+    function buildAllUsers() {
+      const el = document.getElementById('all-users-list');
+      if (!el) return;
+      el.innerHTML = '';
+      USERS.filter(id => id !== 'me').forEach(uid => {
+        const u = DB[uid];
+        el.innerHTML += `<div class="skill-item" onclick="openProfile('${uid}')">
+      <div class="skill-l">${renderAv(uid, 46, 46)}<div><div style="font-weight:900;font-size:14px;margin-bottom:2px">${u.n}</div><div style="font-size:12px;color:var(--sub2)">${u.ri} ${u.rank} • ${u.teach} متدرب • ⭐${u.rating}</div></div></div>
+      <span class="skill-arrow">${svgIcon('arrowl')}</span></div>`;
+      });
+    }
+    function searchSkills(q) {
+      q = q.toLowerCase().trim();
+      const cc = document.getElementById('skills-list-container');
+      const rc = document.getElementById('search-results-container');
+      if (!q) { cc.style.display = 'block'; rc.style.display = 'none'; }
+      else { cc.style.display = 'none'; rc.style.display = 'block'; document.querySelectorAll('#all-users-list .skill-item').forEach(i => { i.style.display = i.innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
+    }
+
+    // ===== OFFERS =====
+    const offerMap = {};
+    USERS.forEach(uid => { if (uid === 'me') return; const c = DB[uid].cat; if (c) { if (!offerMap[c]) offerMap[c] = []; offerMap[c].push(uid); } });
+    const offerTitles = { design: 'التصميم والهندسة', coding: 'البرمجة والبيانات', ai: 'الذكاء الاصطناعي', cyber: 'الأمن السيبراني', business: 'الإدارة والأعمال', lang: 'اللغات والترجمة', media: 'المونتاج والتصوير', math: 'العلوم والرياضيات', other: 'تطوير شخصي' };
+    function openOffers(cat) {
+      document.getElementById('offers-title').textContent = offerTitles[cat] || 'الخدمات المتاحة';
+      const list = document.getElementById('offers-list'); list.innerHTML = '';
+      let users = [...(offerMap[cat] || [])].sort((a, b) => DB[b].teach - DB[a].teach);
+      if (!users.length) { list.innerHTML = `<div style="text-align:center;color:var(--sub2);padding:50px;font-weight:700">لا توجد خدمات هنا حالياً</div>`; go('offers-view', -1); return; }
+      users.forEach(uid => {
+        const u = DB[uid];
+        let sh = u.taught?.length ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${u.taught.map(s => `<span style="background:var(--input);border:1px solid var(--border2);color:var(--text);padding:4px 10px;border-radius:9px;font-size:11px;font-weight:900">${s.n} (${s.st || 0})</span>`).join('')}</div>` : '';
+        list.innerHTML += `<div class="offer-item">
+      <div style="display:flex;align-items:flex-start;gap:14px;cursor:pointer" onclick="openProfile('${uid}')">
+        ${renderAv(uid, 58, 58)}
+        <div style="flex:1">
+          <div style="font-weight:900;font-size:15px;display:flex;align-items:center;gap:6px">${u.n} <span style="font-size:11px;background:var(--input);padding:2px 7px;border-radius:7px;color:var(--sub2);font-weight:700">${u.ri} ${u.rank}</span></div>
+          <div style="font-size:12px;color:var(--accent);font-weight:900;margin:3px 0">${u.title.split('|')[0].trim()}</div>
+          <div style="font-size:11px;color:var(--sub2)">👥 ${u.teach} متدرب • ⭐ ${u.rating} (${u.reviews.length} تقييم)</div>
+          ${sh}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <button class="btn btn-o btn-sm ripple-host" style="flex:1" onclick="openChat('${uid}')">تواصل</button>
+        <button class="btn btn-p btn-sm ripple-host" style="flex:1" onclick="openRequestModal('${uid}')">طلب تعلّم</button>
+      </div></div>`;
+      });
+      go('offers-view', -1);
+      setTimeout(initScrollReveal, 100);
+    }
+
+    // ===== B2B =====
+    function getPricing(rank) {
+      if (rank === 'ماسي') return '١٥٠-٢٠٠ ر.س/ساعة';
+      if (rank === 'ذهبي') return '٨٠-١٢٠ ر.س/ساعة';
+      return '٤٠-٦٥ ر.س/ساعة';
+    }
+    function filterCompCat(el, cat) {
+      document.querySelectorAll('#comp-search-cats .cat').forEach(c => c.classList.remove('active'));
+      el.classList.add('active'); buildCompMatches(cat, 'comp-search-list');
+    }
+    function buildCompMatches(catFilter = 'all', targetId = 'comp-matches-list') {
+      const list = document.getElementById(targetId); if (!list) return; list.innerHTML = '';
+      let arr = USERS.filter(id => id !== 'me');
+      if (catFilter !== 'all') arr = arr.filter(id => DB[id].cat === catFilter);
+      const sort = document.getElementById('comp-sort-sel')?.value || 'trainees';
+      if (sort === 'rank') { const rv = { 'ماسي': 3, 'ذهبي': 2, 'فضي': 1 }; arr.sort((a, b) => (rv[DB[b].rank] || 0) - (rv[DB[a].rank] || 0)); }
+      else arr.sort((a, b) => DB[b].teach - DB[a].teach);
+      let html = '';
+      arr.forEach(uid => {
+        const u = DB[uid];
+        let sh = u.taught?.length ? `<div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px">${u.taught.map(s => `<span style="background:var(--input);border:1px solid var(--border2);color:var(--text);padding:3px 8px;border-radius:8px;font-size:11px;font-weight:900">${s.n}</span>`).join('')}</div>` : '';
+        html += `<div class="offer-item" style="margin-bottom:12px">
+      <div style="display:flex;align-items:flex-start;gap:12px;cursor:pointer" onclick="openProfile('${uid}')">
+        ${renderAv(uid, 52, 52)}
+        <div style="flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div><div style="font-weight:900;font-size:14px">${u.n} <span style="font-size:11px;color:var(--sub2);font-weight:500">${u.ri} ${u.rank}</span></div><div style="font-size:12px;color:var(--sub2);margin-top:2px">⭐ ${u.rating} • 👥 ${u.teach} متدرب</div></div>
+            <div class="price-badge">${getPricing(u.rank)}</div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-top:4px">${u.title}</div>
+          ${sh}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <button class="btn btn-o btn-sm ripple-host" style="flex:1" onclick="openChat('${uid}')">تواصل</button>
+        <button class="btn btn-p btn-sm ripple-host" style="flex:1" onclick="openAssignTask('${uid}')">إسناد مهمة</button>
+      </div></div>`;
+      });
+      list.innerHTML = html;
+      setTimeout(initScrollReveal, 100);
+    }
+    function searchCompSkills(q) {
+      q = q.toLowerCase();
+      document.querySelectorAll('#comp-search-list .offer-item').forEach(i => { i.style.display = i.innerText.toLowerCase().includes(q) ? 'flex' : 'none'; });
+    }
+    function submitProject() {
+      const title = document.getElementById('proj-title').value || 'مشروع جديد';
+      const cat = document.getElementById('proj-cat').value || 'coding';
+      const budget = document.getElementById('proj-budget').value || 'غير محدد';
+      const time = document.getElementById('proj-time').value;
+      const desc = document.getElementById('proj-desc').value || 'لا توجد تفاصيل';
+      COMPANY_PROJECTS.unshift({ id: Date.now(), comp: document.getElementById('comp-name')?.value || 'شركتك', icon: 'building', cat, title, budget, time, desc });
+      const targetCat = document.querySelector(`#comp-search-cats .cat[data-val="${cat}"]`);
+      document.querySelectorAll('#comp-search-cats .cat').forEach(c => c.classList.remove('active'));
+      if (targetCat) targetCat.classList.add('active');
+      else document.querySelector('#comp-search-cats .cat').classList.add('active');
+      buildCompMatches(cat, 'comp-search-list');
+      go('comp-search-view', 1);
+      setTimeout(() => showToast('تم نشر المشروع! إليك أفضل المواهب.', '#10b981'), 400);
+      ['proj-title', 'proj-budget', 'proj-desc'].forEach(id => { document.getElementById(id).value = ''; });
+    }
+
+    // ===== ASSIGN TASK =====
+    function openAssignTask(uid) {
+      currentAssignee = uid; const u = DB[uid];
+      document.getElementById('assign-name').textContent = u.n;
+      document.getElementById('assign-title').textContent = u.title;
+      renderAvEl(document.getElementById('assign-av'), uid, 56, 56);
+      go('assign-task-view', -1);
+    }
+    function submitAssignTask() { showToast('تم إرسال المهمة للطالب بنجاح!', '#10b981'); goBack(); }
+
+    // ===== NOTIFS =====
+    function openNotifs() {
+      ['n-badge1', 'n-badge2'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+      buildNotifs(); go('notif-view', -1);
+    }
+    function buildNotifs() {
+      const list = document.getElementById('notif-list'); list.innerHTML = '';
+      const notifs = userType === 'student' ? [
+        { t: 'تم قبول طلب التعلم من سارة أحمد', sub: 'Python & Data Analysis', time: 'منذ ١٥ دقيقة', icn: 'check', c: 'var(--green)' },
+        { t: 'تقييم جديد ٥ نجوم من ياسر فهد', sub: 'شرح عملي وسريع!', time: 'منذ ساعتين', icn: 'star', c: 'var(--gold)' },
+        { t: 'موعد جلستك غداً الساعة ٤ مساءً', sub: 'مع لمى سعد - Solarpunk Design', time: 'أمس', icn: 'clock', c: 'var(--accent)' },
+        { t: 'وصلت للمرتبة الثانية في المتصدرين!', sub: 'استمر في التدريب للوصول للمركز الأول', time: 'منذ ٣ أيام', icn: 'trophy', c: 'var(--gold)' },
+        { t: '+١٥٠ نقطة نُول في محفظتك', sub: 'مكافأة إكمال مهمة تصميم 3D', time: 'منذ ٤ أيام', icn: 'wallet', c: 'var(--green)' },
+      ] : [
+        { t: 'تقدّم أحمد خالد على مشروعك', sub: 'تصميم واجهة تطبيق توصيل', time: 'منذ ١٠ دقائق', icn: 'user', c: 'var(--accent)' },
+        { t: 'تم إنجاز المهمة من سارة أحمد', sub: 'يرجى المراجعة والتقييم', time: 'منذ ٤ ساعات', icn: 'check', c: 'var(--green)' },
+        { t: 'تم خصم ٥٠٠ ر.س من المحفظة', sub: 'مشروع تصميم واجهات', time: 'أمس', icn: 'wallet', c: 'var(--sub2)' },
+      ];
+      notifs.forEach((n, idx) => {
+        list.innerHTML += `<div class="offer-item" style="flex-direction:row;align-items:center;gap:12px;animation:staggerIn .45s ${idx * .08}s var(--ease) both">
+      <div class="notif-icon-box"><svg style="stroke:${n.c}"><use href="#ic-${n.icn}"/></svg></div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;line-height:1.5">${n.t}</div>
+        <div style="font-size:12px;color:var(--sub2);margin-top:3px;font-weight:500">${n.sub}</div>
+        <div style="font-size:11px;color:var(--sub);margin-top:4px">${n.time}</div>
+      </div></div>`;
+      });
+    }
+
+    // ===== WALLET =====
+    function buildWallet() {
+      const list = document.getElementById('wallet-history'); list.innerHTML = '';
+      if (userType === 'student') {
+        document.getElementById('wallet-balance').textContent = '٣٥٠';
+        document.getElementById('wallet-currency').textContent = 'نقطة نُول';
+        [{ t: 'إنجاز مهمة تصميم 3D', d: '١٥ أكتوبر', a: '+١٥٠', pos: true },
+        { t: 'حجز جلسة برمجة Python', d: '١٢ أكتوبر', a: '-٥٠', pos: false },
+        { t: 'مكافأة التسجيل في نُول', d: '٠١ أكتوبر', a: '+٢٥٠', pos: true }].forEach(addTrans);
+      } else {
+        document.getElementById('wallet-balance').textContent = '٤,٥٠٠';
+        document.getElementById('wallet-currency').textContent = 'ريال سعودي (ر.س)';
+        [{ t: 'إيداع في المحفظة', d: '٢٠ أكتوبر', a: '+٥,٠٠٠', pos: true },
+        { t: 'خصم مشروع تصميم واجهات', d: '١٨ أكتوبر', a: '-٥٠٠', pos: false }].forEach(addTrans);
+      }
+      function addTrans(tr) {
+        list.innerHTML += `<div class="offer-item" style="flex-direction:row;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;border-radius:13px;background:${tr.pos ? 'rgba(13,148,136,.09)' : 'rgba(220,38,38,.06)'};border:1px solid ${tr.pos ? 'rgba(13,148,136,.18)' : 'rgba(220,38,38,.14)'};display:flex;justify-content:center;align-items:center">
+          <svg width="18" height="18" fill="none" stroke="${tr.pos ? 'var(--green)' : 'var(--red)'}" stroke-width="2" stroke-linecap="round"><use href="#ic-${tr.pos ? 'activity' : 'dollar'}"/></svg>
+        </div>
+        <div><div style="font-size:14px;font-weight:900">${tr.t}</div><div style="font-size:11px;color:var(--sub);margin-top:3px">${tr.d}</div></div>
+      </div>
+      <div style="font-size:15px;font-weight:900;color:${tr.pos ? 'var(--green)' : 'var(--sub)'}">${tr.a}</div></div>`;
+      }
+    }
+
+    // ===== DMs =====
+    function buildDMs() {
+      const el = document.getElementById('dm-list'); el.innerHTML = '';
+      const msgs = ['متى يناسبك وقت الجلسة؟', 'يعطيك العافية، وصلتني رسالتك', 'تم تأكيد الحجز، شكراً!', 'سأرسل لك رابط الاجتماع', 'تفضل بأي استفسار', 'أبشر راح أبدأ بالمراجعة'];
+      const times = ['الآن', '١٠:٣٠ ص', 'أمس', 'الأحد', 'السبت', 'منذ ساعتين'];
+      USERS.filter(id => id !== 'me').slice(0, 10).forEach((uid, i) => {
+        const u = DB[uid]; const unread = i < 4;
+        el.innerHTML += `<div class="dm-item" onclick="openChat('${uid}')">
+      ${renderAv(uid, 52, 52)}
+      <div class="dm-info"><div class="dm-name">${u.n}</div><div class="dm-msg" ${unread ? 'style="color:var(--text);font-weight:700"' : ''}>${msgs[i % msgs.length]}</div></div>
+      <div class="dm-meta"><div class="dm-time">${times[i % times.length]}</div>${unread ? `<div class="unread">${i + 1}</div>` : ''}</div></div>`;
+      });
+    }
+    function searchDMs(q) {
+      q = q.toLowerCase();
+      document.querySelectorAll('#dm-list .dm-item').forEach(i => { i.style.display = i.querySelector('.dm-name').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; });
+    }
+
+    // ===== LB =====
+    function buildLB() {
+      const el = document.getElementById('lb-list');
+      const sorted = USERS.filter(id => id !== 'me').sort((a, b) => DB[b].teach - DB[a].teach);
+      el.innerHTML = '';
+      sorted.forEach((uid, i) => {
+        const u = DB[uid];
+        const medals = ['🥇', '🥈', '🥉'];
+        const rankColor = i === 0 ? '#f59e0b' : i === 1 ? '#94a3b8' : i === 2 ? '#b45309' : 'var(--sub2)';
+        el.innerHTML += `<div class="lb-item" onclick="openProfile('${uid}')">
+      <div class="lb-rank" style="color:${rankColor}">${i < 3 ? medals[i] : i + 1}</div>
+      ${renderAv(uid, 44, 44)}
+      <div style="flex:1"><div style="font-size:15px;font-weight:900">${u.n}</div><div style="font-size:12px;color:var(--sub2);margin-top:2px">${u.ri} ${u.rank} • ⭐${u.rating}</div></div>
+      <div style="font-weight:900;color:var(--green);font-size:13px;background:rgba(13,148,136,.09);padding:5px 11px;border-radius:11px;border:1px solid rgba(13,148,136,.18)">👥 ${u.teach}</div></div>`;
+      });
+      setTimeout(initScrollReveal, 100);
+    }
+
+    // ===== FILTER CAT =====
+    function filterCat(el, cat) {
+      document.querySelectorAll('#feed-cats .cat').forEach(c => c.classList.remove('active'));
+      el.classList.add('active'); el.dataset.val = cat; buildFeed();
+    }
+
+    // ===== PROFILE =====
+    function openProfile(uid, ni = -1) {
+      const u = DB[uid]; if (!u) return;
+      const isMe = uid === 'me';
+      document.getElementById('prof-back').style.display = isMe ? 'none' : 'flex';
+      document.getElementById('prof-set').style.display = isMe ? 'flex' : 'none';
+      document.getElementById('prof-cover').style.background = u.bg;
+      const pavWrap = document.getElementById('prof-av');
+      pavWrap.style.background = u.bg;
+      pavWrap.innerHTML = `<div class="av-svg"><svg width="44" height="44" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-${MEDIA_ICONS[uid] || 'user'}"/></svg></div>`;
+      const badge = u.rank === 'ماسي' ? `<span class="badge badge-diamond">💎 ماسي</span>` : u.rank === 'ذهبي' ? `<span class="badge badge-gold">🌟 ذهبي</span>` : `<span class="badge badge-silver">🥈 فضي</span>`;
+      document.getElementById('prof-name').innerHTML = `${u.n} ${u.teach > 20 ? `<div class="v-check"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><use href="#ic-check"/></svg></div>` : ''} ${badge}`;
+      document.getElementById('prof-title').textContent = u.title;
+      document.getElementById('prof-bio').textContent = u.bio;
+      document.getElementById('ps-rank').textContent = u.rank;
+      document.getElementById('ps-icon').textContent = u.ri;
+      document.getElementById('ps-learn').textContent = u.learn;
+      document.getElementById('ps-teach').textContent = u.teach;
+      document.getElementById('ps-rating').textContent = u.rating || '4.9';
+      const mb = document.getElementById('prof-msg-btn');
+      mb.style.display = isMe ? 'none' : 'block';
+      mb.textContent = userType === 'company' ? 'إسناد مهمة' : 'طلب تعلّم المهارة';
+      mb.onclick = () => userType === 'company' ? openAssignTask(uid) : openRequestModal(uid);
+      document.getElementById('grid-taught').innerHTML = u.taught.length ? u.taught.map(s => `
+    <div class="svc-card">
+      <div class="svc-icon"><svg><use href="#ic-${s.icon || 'star'}"/></svg></div>
+      <div class="svc-det"><div class="svc-t">${s.n}</div>${s.st ? `<div class="stud-b">👥 ${s.st} متدرب</div>` : ''}</div>
+      ${!isMe ? `<button class="btn btn-p btn-sm ripple-host" onclick="event.stopPropagation();${userType === 'company' ? `openAssignTask('${uid}')` : `openRequestModal('${uid}')`}">طلب</button>` : ''}
+    </div>`).join('') : `<div style="text-align:center;color:var(--sub2);padding:24px;font-weight:700">لا توجد خدمات</div>`;
+      document.getElementById('grid-learned').innerHTML = u.learned.length ? u.learned.map(s => `<div class="svc-card"><div class="svc-icon"><svg><use href="#ic-${s.icon || 'star'}"/></svg></div><div class="svc-det"><div class="svc-t">${s.n}</div></div></div>`).join('') : `<div style="text-align:center;color:var(--sub2);padding:24px;font-weight:700">لا توجد بيانات</div>`;
+      document.getElementById('grid-reviews').innerHTML = u.reviews?.length ? u.reviews.map(r => `
+    <div class="rev-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-size:14px;font-weight:900">${r.n}</span>
+        <span style="color:var(--gold);font-size:13px">${r.s}</span>
+      </div>
+      <div style="font-size:13px;color:var(--sub);line-height:1.7;font-weight:500">${r.t}</div>
+    </div>`).join('') : `<div style="text-align:center;color:var(--sub2);padding:24px;font-weight:700">لا توجد تقييمات</div>`;
+      toggleGrid('taught'); go('profile-view', ni);
+      setTimeout(initScrollReveal, 300);
+    }
+    function toggleGrid(type) {
+      ['taught', 'learned', 'reviews'].forEach(t => {
+        document.getElementById('tab-' + t).classList.toggle('active', t === type);
+        const el = document.getElementById('grid-' + t);
+        el.style.display = t === type ? (t === 'reviews' ? 'block' : 'flex') : 'none';
+        if (t === type && el.style.display === 'flex') el.style.flexDirection = 'column';
+      });
+    }
+
+    // ===== CHAT =====
+    function openChat(uid) {
+      if (!checkGuestPermission('إرسال الرسائل')) return;
+      curChat = uid; const u = DB[uid];
+      document.getElementById('chat-name').textContent = u.n;
+      renderAvEl(document.getElementById('chat-av'), uid, 40, 40);
+      const area = document.getElementById('chat-area');
+      area.innerHTML = `<div class="msg-row in"><div class="msg">أهلاً! معك ${u.n} 😊<br>كيف أقدر أخدمك اليوم؟</div><div class="msg-time">${now()}</div></div>`;
+      go('chat-view', -1);
+    }
+    function openCurrentProfile() { if (curChat) openProfile(curChat); }
+    function sendMsg() {
+      const inp = document.getElementById('chat-inp');
+      const txt = inp.value.trim(); if (!txt) return;
+      const area = document.getElementById('chat-area');
+      const ind = document.getElementById('typing-ind');
+      area.innerHTML += `<div class="msg-row out"><div class="msg">${txt}</div><div class="msg-time">${now()}</div></div>`;
+      inp.value = ''; area.appendChild(ind); ind.style.display = 'flex'; area.scrollTop = area.scrollHeight;
+      const replies = ['أبشر، راح أراجع طلبك!', 'ممتاز! متى يناسبك الوقت؟', 'وصلتني رسالتك ✓', 'سيتم التنسيق معك قريباً', 'بكل سرور!', 'أهتم بك 😊'];
+      setTimeout(() => {
+        ind.style.display = 'none';
+        area.innerHTML += `<div class="msg-row in"><div class="msg">${replies[Math.floor(Math.random() * replies.length)]}</div><div class="msg-time">${now()}</div></div>`;
+        area.scrollTop = area.scrollHeight;
+      }, 1200 + Math.random() * 800);
+    }
+    function now() { return new Date().toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' }); }
+
+    // ===== LOGOUT =====
+    async function doLogout() {
+      try { await fetch('/api/logout', { method: 'POST' }); } catch (e) { }
+      isGuest = false; currentUserData = null;
+      navHist = ['login-view'];
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('login-view').classList.add('active');
+      document.getElementById('bnav').style.display = 'none';
+      showPanel('login');
+      showToast('تم تسجيل الخروج بنجاح');
+    }
+
+    // ===== MISC =====
+    function selType(el) { document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active')); el.classList.add('active'); }
+    function submitSkill() {
+      if (!checkGuestPermission('نشر خدمة')) return;
+      goBack(); setTimeout(() => showToast('تم نشر خدمتك في نُول بنجاح!', '#10b981'), 300);
+    }
+    function toggleTheme() {
+      isDark = !isDark;
+      document.documentElement.classList.toggle('dark', isDark);
+      document.getElementById('theme-lbl').textContent = isDark ? 'فاتح' : 'داكن';
+      const ti = document.getElementById('theme-icon');
+      if (ti) ti.innerHTML = `<use href="#ic-${isDark ? 'sun' : 'moon'}"/>`;
+      showToast(isDark ? 'تم تفعيل الوضع الداكن 🌙' : 'تم تفعيل الوضع الفاتح ☀️');
+    }
+
+    // ===== TOAST =====
+    let toastTimer = null;
+    function showToast(msg, color) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = color || 'var(--text)';
+      t.style.color = color ? '#fff' : 'var(--bg)';
+      t.classList.remove('gone');
+      t.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.classList.add('gone'); setTimeout(() => t.classList.remove('show', 'gone'), 400); }, 3000);
+    }
+
+    // ===== NAV =====
+    function go(vid, ni = -1) {
+      if (navHist[navHist.length - 1] !== vid) { if (ni >= 0) navHist = []; navHist.push(vid); }
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(vid).classList.add('active');
+      const nbs = document.querySelectorAll('#bnav .nb');
+      nbs.forEach(b => b.classList.remove('active'));
+      if (ni >= 0 && ni < nbs.length) nbs[ni].classList.add('active');
+      const alwaysHide = ['login-view', 'settings-view', 'chat-view', 'add-view', 'lb-view', 'comp-post-view', 'notif-view', 'wallet-view', 'assign-task-view'];
+      let hide = alwaysHide.includes(vid);
+      if (vid === 'profile-view') { const mb = document.getElementById('prof-msg-btn'); if (mb) hide = mb.style.display === 'block'; }
+      document.getElementById('bnav').style.display = hide ? 'none' : 'flex';
+      window.scrollTo(0, 0);
+    }
+    function goBack() {
+      if (navHist.length > 1) {
+        navHist.pop(); const prev = navHist[navHist.length - 1]; go(prev, -1);
+        const nbs = document.querySelectorAll('#bnav .nb');
+        nbs.forEach(b => b.classList.remove('active'));
+        const map = userType === 'student' ? { 'feed-view': 0, 'search-view': 1, 'dm-view': 3 } : { 'comp-dash-view': 0, 'comp-search-view': 1, 'dm-view': 3 };
+        if (map[prev] !== undefined) nbs[map[prev]]?.classList.add('active');
+      } else {
+        go(userType === 'student' ? 'feed-view' : 'comp-dash-view', 0);
+      }
+    }
+  </script>
+</body>
+
+</html>
